@@ -20,6 +20,9 @@ Create a user that is part of the group:
 
 `/user add name=prometheus group=prometheus password=TOP_SECRET`
 
+Because the library makes a new connection for every API request, your logs are getting cluttered:
+
+`system logging set 0 topics=info,!account`
 
 ## Prepare Raspi
 

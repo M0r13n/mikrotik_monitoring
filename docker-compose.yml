@@ -2,6 +2,7 @@ version: "3.9"
 
 volumes:
     prometheus_data: {}
+    grafana_data: {}
 
 
 services:
@@ -32,6 +33,28 @@ services:
     restart: unless-stopped
     ports:
       - 9090:9090
+    networks:
+      - default
+    labels:
+      org.label-schema.group: "monitoring"
+
+  # Grafana
+  # https://github.com/stefanprodan/dockprom
+  grafana:
+    image: grafana/grafana:8.0.4
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+      - 80:3000
     networks:
       - default
     labels:
