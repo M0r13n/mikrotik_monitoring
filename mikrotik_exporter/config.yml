@@ -1,0 +1,6 @@
+devices:
+  - name: Chateau
+    address: 192.168.0.1
+    user: prometheus
+    password: TOP_SECRET
+ 

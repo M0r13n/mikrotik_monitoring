@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  mikrotik_exporter:
+    image: nshttpd/mikrotik-exporter-linux-arm64:1.0.12-DEVEL # Change this depending on your version and/or if you built the image locally
+    volumes:
+      - './mikrotik_exporter:/config'
+    env_file: .env
+    ports:
+      - 9436:9436
+    restart: unless-stopped
