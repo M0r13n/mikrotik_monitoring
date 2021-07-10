@@ -1,6 +1,12 @@
 version: "3.9"
 
+volumes:
+    prometheus_data: {}
+
+
 services:
+  # Mikrotik Exporter
+  # https://github.com/nshttpd/mikrotik-exporter  
   mikrotik_exporter:
     image: nshttpd/mikrotik-exporter-linux-arm64:1.0.12-DEVEL # Change this depending on your version and/or if you built the image locally
     volumes:
@@ -8,4 +14,25 @@ services:
     env_file: .env
     ports:
       - 9436:9436
+    networks:
+      - default
     restart: unless-stopped
+
+  # Prometheus
+  # https://github.com/stefanprodan/dockprom
+  prometheus:
+    image: prom/prometheus:v2.28.1
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+    networks:
+      - default
+    labels:
+      org.label-schema.group: "monitoring"
