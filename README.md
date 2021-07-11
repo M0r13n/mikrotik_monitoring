@@ -7,6 +7,11 @@ Over the past years I replaced all my networking gear with Mikrotik devices. Not
 - Router running RouterOS 7.x.x
 - Raspberry Pi 4 with 2 gb RAM
 
+## Demo pictures
+
+![General system stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic1.png)
+![Wifi stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic2.png)
+
 ## Installation
 
 ## Mikrotik Router
