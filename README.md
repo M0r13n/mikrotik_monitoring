@@ -1,11 +1,17 @@
 # Monitor your Mikrotik router with Prometheus and Grafana
 
-Over the past years I replaced all my networking gear with Mikrotik devices. Nothing compares to Mikrotik in terms of price, features, performance and reliability. I absolutely love WinBox for management, but sometimes I miss some fancy charts and graphs. Luckily, RouterOS comes with a REST-API that can be used to query arbitrary data from the device.
+Over the past years I replaced all my networking gear with Mikrotik devices. I absolutely love WinBox for management, but sometimes I miss some fancy charts and graphs. Luckily, RouterOS comes with a REST-API that can be used to query arbitrary data from the device. After some research I found some useful tools and blog posts that solved similar problems. Namely:
+
+- [A blog post by Devin Smith that first got me interested](https://blog.devinsmith.co.za/home-internet-grafana-lockdown/)
+- [A somewhat useable Grafana Dashboard](https://grafana.com/grafana/dashboards/10950)
+- [A Prometheus exporter for Mikrotik devices](https://github.com/nshttpd/mikrotik-exporter)
+
+NOTE: I recently stumbled across [mktxp](https://github.com/akpw/mktxp). This is an alternative for `mikrotik-exporter` and seems to be more actively maintained. I am currently thinking about switching to this exporter.
 
 ## Setup
 
 - Router running RouterOS 7.x.x
-- Raspberry Pi 4 with 2 gb RAM
+- Raspberry Pi 4 with 2 gb RAM (other PIs may also work, but I wanted ARM 64 bit)
 
 ## Demo pictures
 
@@ -30,6 +36,7 @@ Because the library makes a new connection for every API request, your logs are 
 `system logging set 0 topics=info,!account`
 
 ## Prepare Raspi
+You need Ubuntu Server for ARM 64 bit in order to use this setup. You may also use Raspian, but then you are limited to 32bit ARM executables. This would mean, that you need to compile the `mikrotik-exporter` by hand, because there are no predefined 32-bit Docker images.
 
 Install Python and pip:
 
