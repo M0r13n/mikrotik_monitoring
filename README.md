@@ -43,3 +43,18 @@ sudo usermod -aG docker ubuntu
 sudo pip3 install docker-compose
 sudo systemctl enable docker
 ```
+
+Spin up Grafana and Prometheus:
+
+```bash
+# Clone this repo
+git clone https://github.com/M0r13n/mikrotik_monitoring.git
+
+# Go into the cloned directory
+cd mikrotik_monitoring
+
+# Let docker-compose do it's job
+sudo docker-compose up -d
+```
+
+Done. You should now be able to open the Grafana dashboard on Port 3000 of your Raspberry Pi.
