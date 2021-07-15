@@ -12,36 +12,41 @@
       }
     ]
   },
-  "description": "Mikrotik RouterOS metrics",
+  "description": "Mikrotik MKTXP Exporter metrics",
   "editable": true,
-  "gnetId": 10950,
+  "gnetId": 13679,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1626013859295,
+  "id": 2,
+  "iteration": 1626361813995,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 24,
+      "id": 10,
       "panels": [],
-      "repeat": null,
-      "title": "Dashboard Row",
+      "title": "System",
       "type": "row"
     },
     {
       "cacheTimeout": null,
       "datasource": "Prometheus",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "green",
+            "mode": "fixed"
           },
           "mappings": [
             {
@@ -60,10 +65,77 @@
               {
                 "color": "green",
                 "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 1
+      },
+      "id": 72,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_system_identity_info{routerboard_address=\"$node\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Identity",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
               },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
               {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -72,20 +144,20 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 0,
+        "h": 2,
+        "w": 2,
+        "x": 2,
         "y": 1
       },
-      "id": 37,
+      "id": 12,
       "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "horizontal",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -102,7 +174,7 @@
           "application": {
             "filter": "General"
           },
-          "expr": "mikrotik_system_uptime{address=\"$node\"}",
+          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -112,10 +184,13 @@
           "host": {
             "filter": "MikroTik Router"
           },
+          "instant": true,
+          "interval": "",
           "intervalFactor": 1,
           "item": {
             "filter": "System uptime"
           },
+          "legendFormat": "",
           "mode": 0,
           "options": {
             "showDisabledItems": false
@@ -131,199 +206,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "fixedColor": "rgb(31, 120, 193)",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 4,
-        "y": 1
-      },
-      "id": 38,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.0.4",
-      "targets": [
-        {
-          "application": {
-            "filter": "General"
-          },
-          "expr": "mikrotik_dhcp_leases_active_count{address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "intervalFactor": 1,
-          "item": {
-            "filter": "DHCP leases"
-          },
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "DHCP leases",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "max": 16000000,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 7500000
-              },
-              {
-                "color": "red",
-                "value": 15000000
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 8,
-        "y": 1
-      },
-      "id": 32,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.4",
-      "targets": [
-        {
-          "application": {
-            "filter": "General"
-          },
-          "exemplar": true,
-          "expr": "mikrotik_system_total_hdd_space{address=\"192.168.0.1\"} - mikrotik_system_free_hdd_space{address=\"192.168.0.1\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "System version and hw"
-          },
-          "legendFormat": "",
-          "mode": 2,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "HDD storage",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
+          "decimals": 1,
           "mappings": [
             {
               "options": {
@@ -336,7 +219,7 @@
             }
           ],
           "max": 100,
-          "min": 0,
+          "min": 0.1,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -346,11 +229,11 @@
               },
               {
                 "color": "rgba(237, 129, 40, 0.89)",
-                "value": 50
+                "value": 70
               },
               {
                 "color": "rgba(245, 54, 54, 0.9)",
-                "value": 80
+                "value": 90
               }
             ]
           },
@@ -359,122 +242,26 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 8,
         "w": 4,
-        "x": 12,
+        "x": 4,
         "y": 1
       },
-      "id": 39,
+      "id": 14,
       "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
+        "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.4",
-      "targets": [
-        {
-          "application": {
-            "filter": "CPU"
-          },
-          "expr": "mikrotik_system_cpu_load{address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "intervalFactor": 1,
-          "item": {
-            "filter": "CPU 1 load"
-          },
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "CPU load",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 2,
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "max": 255999999,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgba(50, 172, 45, 0.97)",
-                "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 128000000
-              },
-              {
-                "color": "rgba(245, 54, 54, 0.9)",
-                "value": 196000000
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 16,
-        "y": 1
-      },
-      "id": 40,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
+        "showUnfilled": true,
         "text": {}
       },
       "pluginVersion": "8.0.4",
@@ -483,7 +270,7 @@
           "application": {
             "filter": "Memory"
           },
-          "expr": "mikrotik_system_total_memory{address=\"$node\"} - mikrotik_system_free_memory{address=\"$node\"}",
+          "expr": "(1 - mktxp_system_free_memory{routerboard_address=\"$node\"} / mktxp_system_total_memory{routerboard_address=\"$node\"})*100",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -493,310 +280,37 @@
           "host": {
             "filter": "MikroTik Router"
           },
-          "instant": false,
+          "instant": true,
+          "interval": "",
           "intervalFactor": 1,
           "item": {
             "filter": "Used memory"
           },
+          "legendFormat": "Used RAM Memory",
           "mode": 0,
           "options": {
             "showDisabledItems": false
           },
           "refId": "A"
-        }
-      ],
-      "title": "Used RAM",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "semi-dark-blue",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 20,
-        "y": 1
-      },
-      "id": 46,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.0.4",
-      "targets": [
-        {
-          "application": {
-            "filter": "General"
-          },
-          "exemplar": true,
-          "expr": "mikrotik_interface_rx_byte{address=\"$node\",interface=\"lte1\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "System version and hw"
-          },
-          "legendFormat": "RX",
-          "mode": 2,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
         },
         {
-          "exemplar": true,
-          "expr": "mikrotik_interface_tx_byte{address=\"$node\",interface=\"lte1\"}",
-          "hide": false,
+          "expr": "mktxp_system_cpu_load{routerboard_address=\"$node\"}",
+          "instant": true,
           "interval": "",
-          "legendFormat": "TX",
+          "legendFormat": "CPU Load",
+          "refId": "C"
+        },
+        {
+          "expr": "(1 - mktxp_system_free_hdd_space{routerboard_address=\"$node\"} / mktxp_system_total_hdd_space{routerboard_address=\"$node\"})*100",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "HDD Utilization",
           "refId": "B"
         }
       ],
-      "title": "Transfered Data",
-      "type": "stat"
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 6
-      },
-      "id": 25,
-      "panels": [],
-      "repeat": null,
-      "title": "System",
-      "type": "row"
-    },
-    {
-      "aliasColors": {
-        "In - bridge": "dark-purple",
-        "Incoming traffic on interface ether1-gateway": "#1F78C1",
-        "Out - bridge": "light-green",
-        "Out - ether2": "rgba(56, 235, 190, 1)",
-        "Out - ether3": "semi-dark-green",
-        "Outgoing traffic on interface ether1-gateway": "#EAB839"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 3,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
-        "y": 7
-      },
-      "hiddenSeries": false,
-      "id": 41,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": false
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "8.0.4",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:804",
-          "alias": "/In/"
-        },
-        {
-          "$$hashKey": "object:805",
-          "alias": "/Out/",
-          "color": "#96D98D",
-          "transform": "negative-Y"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "application": {
-            "filter": "Network"
-          },
-          "exemplar": true,
-          "expr": "rate(mikrotik_interface_rx_byte{address=\"$node\",running=\"true\"}[15s]) * 8",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "Incoming traffic on interface ether1-gateway"
-          },
-          "legendFormat": "In - {{ interface }}",
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        },
-        {
-          "application": {
-            "filter": "Network"
-          },
-          "exemplar": true,
-          "expr": "rate(mikrotik_interface_tx_byte{address=\"$node\",running=\"true\"}[15s]) * 8",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "Outgoing traffic on interface ether1-gateway"
-          },
-          "legendFormat": "Out - {{ interface }}",
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
-      "title": "Traffic",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:824",
-          "format": "bps",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:825",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "bargauge"
     },
     {
       "aliasColors": {},
@@ -816,20 +330,22 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 13
+        "w": 8,
+        "x": 8,
+        "y": 1
       },
       "hiddenSeries": false,
-      "id": 35,
+      "id": 16,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -853,7 +369,8 @@
           "application": {
             "filter": "CPU"
           },
-          "expr": "mikrotik_system_cpu_load{address=\"$node\"}",
+          "exemplar": true,
+          "expr": "mktxp_system_cpu_load{routerboard_address=\"$node\"}",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -862,11 +379,13 @@
           "host": {
             "filter": "MikroTik Router"
           },
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
           "item": {
             "filter": "CPU 1 load"
           },
-          "legendFormat": "",
+          "legendFormat": "{{cpu}}",
           "mode": 0,
           "options": {
             "showDisabledItems": false
@@ -895,14 +414,16 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:398",
           "format": "percent",
           "label": null,
-          "logBase": 1,
+          "logBase": 10,
           "max": "100",
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:399",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -915,147 +436,6 @@
         "align": false,
         "alignLevel": null
       }
-    },
-    {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        }
-      ],
-      "datasource": null,
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 16,
-        "w": 12,
-        "x": 12,
-        "y": 13
-      },
-      "id": 34,
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 2,
-        "desc": true
-      },
-      "styles": [
-        {
-          "alias": "Active Address",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "activeaddress",
-          "preserveFormat": false,
-          "sanitize": false,
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "alias": "Active MAC Address",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "activemacaddress",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "alias": "Hostname",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "hostname",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "alias": "Status",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "status",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "alias": "Expires After",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "expiresafter",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "mikrotik_dhcp_leases_metrics{address=\"$node\"}",
-          "format": "table",
-          "instant": true,
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "DHCP Leases",
-      "transform": "table",
-      "type": "table-old"
     },
     {
       "aliasColors": {
@@ -1078,20 +458,21 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 21
+        "w": 8,
+        "x": 16,
+        "y": 1
       },
       "hiddenSeries": false,
-      "id": 36,
+      "id": 18,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -1108,6 +489,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:743",
           "alias": "Total memory",
           "color": "#E24D42",
           "fill": 2,
@@ -1115,6 +497,7 @@
           "zindex": -3
         },
         {
+          "$$hashKey": "object:744",
           "alias": "Used memory",
           "color": "#1F78C1"
         }
@@ -1127,7 +510,7 @@
           "application": {
             "filter": "Memory"
           },
-          "expr": "mikrotik_system_total_hdd_space{address=\"$node\"} - mikrotik_system_free_hdd_space{address=\"$node\"}",
+          "expr": "mktxp_system_total_hdd_space{routerboard_address=\"$node\"} - mktxp_system_free_hdd_space{routerboard_address=\"$node\"}",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -1136,6 +519,8 @@
           "host": {
             "filter": "MikroTik Router"
           },
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
           "item": {
             "filter": "Used memory"
@@ -1151,7 +536,7 @@
           "application": {
             "filter": "Memory"
           },
-          "expr": "mikrotik_system_total_hdd_space{address=\"$node\"}",
+          "expr": "mktxp_system_total_hdd_space{routerboard_address=\"$node\"}",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -1160,6 +545,8 @@
           "host": {
             "filter": "MikroTik Router"
           },
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
           "item": {
             "filter": "Total memory"
@@ -1176,7 +563,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Used memory",
+      "title": "HDD Utilization",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -1193,7 +580,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2669",
+          "$$hashKey": "object:365",
           "format": "decbytes",
           "label": null,
           "logBase": 1,
@@ -1202,7 +589,498 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2670",
+          "$$hashKey": "object:366",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 2,
+        "y": 3
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{board_name}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Routerboard HW",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 70
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 2,
+        "x": 0,
+        "y": 4
+      },
+      "id": 59,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_system_routerboard_temperature{routerboard_address=\"$node\"}  ",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Temperature",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 2,
+        "y": 5
+      },
+      "id": 8,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "General"
+          },
+          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "System version and hw"
+          },
+          "legendFormat": "{{version}} ",
+          "mode": 2,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "System version",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 2,
+        "y": 7
+      },
+      "id": 57,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "General"
+          },
+          "expr": "mktxp_system_routerboard_voltage{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "System version and hw"
+          },
+          "legendFormat": "",
+          "mode": 2,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Voltage",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {
+        "In | defconf": "dark-red",
+        "In | ether2": "dark-blue",
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Out | defconf": "semi-dark-green",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 75,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": false
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:842",
+          "alias": "/In/"
+        },
+        {
+          "$$hashKey": "object:843",
+          "alias": "/Out/",
+          "color": "#56A64B",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "exemplar": true,
+          "expr": "rate(mktxp_interface_rx_byte_total{routerboard_address=\"$node\"}[15s]) * 8",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "In | {{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        },
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "exemplar": true,
+          "expr": "rate(mktxp_interface_tx_byte_total{routerboard_address=\"$node\"}[15s]) * 8",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Outgoing traffic on interface ether1-gateway"
+          },
+          "legendFormat": "Out | {{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Interface traffic ",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1217,11 +1095,620 @@
       }
     },
     {
+      "collapsed": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 2,
+      "panels": [],
+      "title": "DHCP",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 0,
+        "y": 17
+      },
+      "id": 20,
+      "interval": null,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "mktxp_dhcp_lease_active_count{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ server }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DHCP Leases by Server",
+      "type": "bargauge"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "__name__"
+            },
+            "properties": [
+              {
+                "id": "displayName"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mac_address"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 231
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DHCP VLAN"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 227
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "active_address"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 240
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Host Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 383
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Comment"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 360
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 19,
+        "x": 5,
+        "y": 17
+      },
+      "id": 25,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "active_address"
+          }
+        ]
+      },
+      "pluginVersion": "8.0.4",
+      "repeat": null,
+      "targets": [
+        {
+          "expr": "mktxp_dhcp_lease_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DHCP Leases",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "routerboard_address": true,
+              "routerboard_name": true
+            },
+            "indexByName": {
+              "Time": 9,
+              "Value": 13,
+              "__name__": 8,
+              "active_address": 5,
+              "address": 4,
+              "comment": 1,
+              "expires_after": 6,
+              "host_name": 0,
+              "instance": 7,
+              "job": 10,
+              "mac_address": 3,
+              "routerboard_address": 11,
+              "routerboard_name": 12,
+              "server": 2
+            },
+            "renameByName": {
+              "comment": "Comment",
+              "host_name": "Host Name",
+              "server": "DHCP Server"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 25
+      },
+      "id": 23,
+      "interval": null,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "sum(mktxp_dhcp_lease_active_count{routerboard_address=\"$node\"})",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "In - {{ server }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total DHCP Leases",
+      "type": "bargauge"
+    },
+    {
+      "collapsed": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 45,
+      "panels": [],
+      "title": "Network",
+      "type": "row"
+    },
+    {
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "Unplugged"
+                },
+                "1": {
+                  "text": ""
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 2,
+        "x": 0,
+        "y": 29
+      },
+      "id": 70,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_routes_total_routes{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Routes",
+      "type": "gauge"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 2,
+        "y": 29
+      },
+      "id": 71,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "mktxp_routes_protocol_count{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "/errors on interface/"
+          },
+          "legendFormat": "{{protocol}}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Routes per protocol",
+      "type": "bargauge"
+    },
+    {
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "No"
+                },
+                "1": {
+                  "text": "Yes"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 29
+      },
+      "id": 69,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_interface_full_duplex{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Ethernet Ports: Full Duplex",
+      "type": "bargauge"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -1233,16 +1720,16 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 16,
         "w": 12,
-        "x": 0,
+        "x": 12,
         "y": 29
       },
       "hiddenSeries": false,
-      "id": 42,
+      "id": 55,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": false,
         "max": false,
         "min": false,
@@ -1273,8 +1760,7 @@
           "application": {
             "filter": "Network"
           },
-          "exemplar": true,
-          "expr": "mikrotik_interface_rx_error{address=\"$node\",running=\"true\"}",
+          "expr": "mktxp_interface_rx_error_total{routerboard_address=\"$node\"}",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -1289,7 +1775,7 @@
           "item": {
             "filter": "/errors on interface/"
           },
-          "legendFormat": "InErrors {{interface}}",
+          "legendFormat": "In Errors | {{name}}",
           "mode": 0,
           "options": {
             "showDisabledItems": false
@@ -1297,13 +1783,12 @@
           "refId": "A"
         },
         {
-          "exemplar": true,
-          "expr": "mikrotik_interface_tx_error{address=\"$node\",running=\"true\"}",
+          "expr": "mktxp_interface_tx_error_total{routerboard_address=\"$node\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Out Errors {{interface}}",
+          "legendFormat": "Out Errors | {{name}}",
           "refId": "B"
         }
       ],
@@ -1311,7 +1796,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Errors",
+      "title": "Interface Errors",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -1328,7 +1813,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2176",
+          "$$hashKey": "object:265",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1337,7 +1822,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2177",
+          "$$hashKey": "object:266",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1352,164 +1837,90 @@
       }
     },
     {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        }
-      ],
-      "datasource": null,
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 12,
-        "y": 29
-      },
-      "id": 44,
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": false
-      },
-      "styles": [
-        {
-          "alias": "Interface",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Metric",
-          "type": "string"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": "row",
-          "colors": [
-            "rgba(104, 115, 104, 0)",
-            "rgb(41, 97, 34)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "decimals": 0,
-          "pattern": "Current",
-          "thresholds": [
-            "0.1"
-          ],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "mikrotik_monitor_status{address=\"$node\"}",
-          "legendFormat": "{{interface}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Interface status (operational)",
-      "transform": "timeseries_aggregations",
-      "type": "table-old"
-    },
-    {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        }
-      ],
-      "datasource": null,
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 18,
-        "y": 29
-      },
-      "id": 45,
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": false
-      },
-      "styles": [
-        {
-          "alias": "Interface",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Metric",
-          "type": "string"
-        },
-        {
-          "alias": "Rate",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(104, 115, 104, 0)",
-            "rgb(41, 97, 34)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "decimals": 0,
-          "pattern": "Current",
-          "thresholds": [
-            "0.0"
-          ],
-          "type": "number",
-          "unit": "none"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "mikrotik_monitor_rate{address=\"$node\"}",
-          "legendFormat": "{{interface}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Interface  rate",
-      "transform": "timeseries_aggregations",
-      "type": "table-old"
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 38
-      },
-      "id": 28,
-      "panels": [],
-      "repeat": null,
-      "title": "Wireless",
-      "type": "row"
-    },
-    {
-      "cacheTimeout": null,
       "datasource": "Prometheus",
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "fixedColor": "rgb(31, 120, 193)",
-            "mode": "fixed"
-          },
           "mappings": [
             {
               "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
+                "0": {
+                  "text": "Unplugged"
+                },
+                "1": {
+                  "text": "Plugged-In"
                 }
               },
-              "type": "special"
+              "type": "value"
             }
           ],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 34
+      },
+      "id": 51,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_interface_status{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Ethernet Ports: Status",
+      "type": "bargauge"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1523,193 +1934,272 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "Mbits"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 0,
-        "y": 39
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 34
       },
-      "id": 19,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
+      "id": 53,
       "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
+        "showHeader": true
       },
       "pluginVersion": "8.0.4",
       "targets": [
         {
-          "application": {
-            "filter": "Wireless"
-          },
-          "exemplar": true,
-          "expr": "mikrotik_wlan_interface_registered_clients{address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "host": {
-            "filter": "MikroTik Router"
-          },
+          "expr": "mktxp_interface_rate{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
           "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "AP client count"
-          },
-          "legendFormat": "{{channel}}",
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
+          "legendFormat": "{{name}}",
           "refId": "A"
         }
       ],
-      "title": "AP client count",
-      "type": "stat"
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Rates",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "address": true,
+              "env": true,
+              "instance": true,
+              "job": true,
+              "name": false,
+              "routerboard_address": true,
+              "routerboard_name": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value": "Rate",
+              "name": "Interface",
+              "routerboard_name": ""
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
-      "cacheTimeout": null,
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed"
           },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "max": 0,
-          "min": -200,
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "rgba(50, 172, 45, 0.97)",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": -95
-              },
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "__name__"
+            },
+            "properties": [
               {
-                "color": "rgba(245, 54, 54, 0.9)",
-                "value": -89
+                "id": "displayName"
               }
             ]
           },
-          "unit": "dB"
-        },
-        "overrides": []
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mac_address"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 231
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DHCP VLAN"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 227
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "active_address"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 240
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Host Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 383
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Comment"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 360
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 4,
         "w": 12,
-        "x": 12,
-        "y": 39
+        "x": 0,
+        "y": 41
       },
-      "id": 21,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
+      "id": 85,
       "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "active_address"
+          }
+        ]
       },
       "pluginVersion": "8.0.4",
       "targets": [
         {
-          "application": {
-            "filter": "Wireless"
-          },
-          "exemplar": true,
-          "expr": "mikrotik_wlan_interface_noise_floor{address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
+          "expr": "mktxp_poe_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
           "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "AP noise floor"
-          },
-          "legendFormat": "{{channel}}",
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
+          "legendFormat": "",
           "refId": "A"
         }
       ],
-      "title": "AP noise floor",
-      "type": "gauge"
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "POE",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "routerboard_address": true,
+              "routerboard_name": true
+            },
+            "indexByName": {
+              "Time": 9,
+              "Value": 13,
+              "__name__": 8,
+              "active_address": 5,
+              "address": 4,
+              "comment": 1,
+              "expires_after": 6,
+              "host_name": 0,
+              "instance": 7,
+              "job": 10,
+              "mac_address": 3,
+              "routerboard_address": 11,
+              "routerboard_name": 12,
+              "server": 2
+            },
+            "renameByName": {
+              "comment": "Comment",
+              "host_name": "Host Name",
+              "name": "Interface",
+              "poe_out": "State",
+              "poe_out_status": "Status",
+              "poe_priority": "Priority",
+              "server": "DHCP Server"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 45
       },
-      "id": 29,
+      "id": 84,
       "panels": [],
-      "repeat": null,
-      "title": "Wireless Signal",
+      "title": "Firewall",
       "type": "row"
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
+      "description": "",
+      "editable": true,
+      "error": false,
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "links": [],
+          "unit": "decbytes"
         },
         "overrides": []
       },
-      "fill": 0,
+      "fill": 3,
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
@@ -1718,154 +2208,25 @@
         "y": 46
       },
       "hiddenSeries": false,
-      "id": 16,
+      "id": 81,
       "legend": {
         "alignAsTable": true,
         "avg": true,
-        "current": true,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "8.0.4",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/Ch0/",
-          "color": "#7EB26D"
-        },
-        {
-          "alias": "/Ch1/",
-          "color": "#1F78C1"
-        },
-        {
-          "alias": "/Ch2/",
-          "color": "#CCA300"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "application": {
-            "filter": "Wireless"
-          },
-          "exemplar": true,
-          "expr": "mikrotik_wlan_interface_overall_tx_ccq{address=\"$node\"}",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "interval": "",
-          "item": {
-            "filter": "/Rx signal strength for Ch/"
-          },
-          "legendFormat": "",
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Rx signal strength over channels",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
         "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:4062",
-          "format": "short",
-          "label": "CCQ",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:4063",
-          "format": "short",
-          "label": "Time",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 46
-      },
-      "hiddenSeries": false,
-      "id": 17,
-      "interval": "",
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": false,
-        "min": false,
-        "show": false,
+        "sideWidth": null,
         "total": false,
         "values": true
       },
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "alertThreshold": true
       },
@@ -1882,24 +2243,25 @@
       "targets": [
         {
           "application": {
-            "filter": "Wireless"
+            "filter": "Network"
           },
-          "exemplar": true,
-          "expr": "mikrotik_wlan_interface_noise_floor{address=\"$node\"}",
+          "expr": "rate(mktxp_firewall_filter_total{routerboard_address=\"$node\", log=\"1\"}[4m])",
           "format": "time_series",
           "functions": [],
           "group": {
             "filter": "Network"
           },
+          "hide": false,
           "host": {
             "filter": "MikroTik Router"
           },
+          "instant": false,
           "interval": "",
           "intervalFactor": 1,
           "item": {
-            "filter": "/Signal to noise/"
+            "filter": "Incoming traffic on interface ether1-gateway"
           },
-          "legendFormat": "{{channel}}",
+          "legendFormat": "{{ name }}",
           "mode": 0,
           "options": {
             "showDisabledItems": false
@@ -1907,28 +2269,514 @@
           "refId": "A"
         }
       ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "lt",
-          "value": 25,
-          "yaxis": "left"
-        },
-        {
-          "colorMode": "warning",
-          "fill": true,
-          "line": true,
-          "op": "lt",
-          "value": 35,
-          "yaxis": "left"
-        }
-      ],
+      "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Signal to noise",
+      "title": "Logged Firewall Rules Traffic ",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "decbytes",
+          "label": "",
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 46
+      },
+      "hiddenSeries": false,
+      "id": 82,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_firewall_raw_total{routerboard_address=\"$node\", log=\"1\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Logged Raw Firewall Rules Traffic ",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "decbytes",
+          "label": "",
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 53
+      },
+      "hiddenSeries": false,
+      "id": 43,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_firewall_filter_total{routerboard_address=\"$node\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Firewall Rules Traffic ",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "decbytes",
+          "label": "",
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 53
+      },
+      "hiddenSeries": false,
+      "id": 76,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_firewall_raw_total{routerboard_address=\"$node\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Raw Firewall Rules Traffic ",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "decbytes",
+          "label": "",
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "binbps"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 64
+      },
+      "hiddenSeries": false,
+      "id": 27,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": false
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mktxp_internet_bandwidth",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{direction}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Internet Bandwidth",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1944,16 +2792,121 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:3899",
-          "format": "dB",
-          "label": null,
+          "$$hashKey": "object:54",
+          "decimals": 0,
+          "format": "binbps",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:3900",
+          "$$hashKey": "object:55",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 64
+      },
+      "hiddenSeries": false,
+      "id": 74,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": false
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mktxp_internet_latency",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "latency",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Internet Latency",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:54",
+          "decimals": 0,
+          "format": "ms",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:55",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1966,14 +2919,2316 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "collapsed": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 71
+      },
+      "id": 90,
+      "panels": [],
+      "title": "Netwatch",
+      "type": "row"
+    },
+    {
+      "cards": {
+        "cardHSpacing": 2,
+        "cardMinWidth": 5,
+        "cardRound": null,
+        "cardVSpacing": 2
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateGnYlRd",
+        "defaultColor": "#757575",
+        "exponent": 0.5,
+        "mode": "discrete",
+        "thresholds": [
+          {
+            "$$hashKey": "object:1491",
+            "color": "#56A64B",
+            "tooltip": "Up",
+            "value": "1"
+          },
+          {
+            "$$hashKey": "object:96",
+            "color": "#E02F44",
+            "tooltip": "Down",
+            "value": "0"
+          }
+        ]
+      },
+      "datasource": "Prometheus",
+      "description": "",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 72
+      },
+      "highlightCards": true,
+      "id": 87,
+      "legend": {
+        "show": true
+      },
+      "links": [],
+      "nullPointMode": "as empty",
+      "pageSize": 15,
+      "pluginVersion": "7.4.5",
+      "seriesFilterIndex": -1,
+      "statusmap": {
+        "ConfigVersion": "v1"
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "max_over_time(mktxp_netwatch_status{routerboard_address=\"$node\"}[1m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Status over time",
+      "tooltip": {
+        "customContent": "",
+        "extraInfo": "",
+        "freezeOnClick": true,
+        "items": [],
+        "show": true,
+        "showCustomContent": true,
+        "showExtraInfo": false,
+        "showItems": false
+      },
+      "type": "flant-statusmap-panel",
+      "useMax": true,
+      "usingPagination": false,
+      "xAxis": {
+        "show": true
+      },
+      "yAxis": {
+        "maxWidth": -1,
+        "minWidth": -1,
+        "show": true
+      },
+      "yAxisSort": "metrics",
+      "yLabel": {
+        "delimiter": "",
+        "labelTemplate": "",
+        "usingSplitLabel": false
+      }
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "color-text",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "text": "Down"
+                      },
+                      "1": {
+                        "text": "Up"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "color"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 72
+      },
+      "id": 88,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_netwatch_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Netwatch Info",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "disabled": true,
+              "instance": true,
+              "job": true,
+              "name": true,
+              "routerboard_address": true,
+              "routerboard_name": true,
+              "timeout": true
+            },
+            "indexByName": {
+              "Time": 5,
+              "Value": 9,
+              "__name__": 4,
+              "comment": 1,
+              "host": 0,
+              "instance": 3,
+              "interval": 11,
+              "job": 6,
+              "name": 12,
+              "routerboard_address": 7,
+              "routerboard_name": 8,
+              "since": 10,
+              "status": 2,
+              "timeout": 13
+            },
+            "renameByName": {
+              "comment": "Comment",
+              "host": "Host",
+              "host_name": "Host Name",
+              "interval": "Interval",
+              "server": "DHCP Server",
+              "since": "Since",
+              "status": "Status"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 80
+      },
+      "id": 29,
+      "panels": [],
+      "title": "Wireless",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 81
+      },
+      "hiddenSeries": false,
+      "id": 31,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mktxp_wlan_noise_floor{routerboard_address=\"$node\"}",
+          "interval": "",
+          "legendFormat": "{{channel}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Noise Floor",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:156",
+          "decimals": 1,
+          "format": "dB",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:157",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 81
+      },
+      "hiddenSeries": false,
+      "id": 73,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mktxp_wlan_overall_tx_ccq{routerboard_address=\"$node\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{channel}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Overall Tx CCQ",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:54",
+          "decimals": 2,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:55",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "__name__"
+            },
+            "properties": [
+              {
+                "id": "displayName"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "rx_signal"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 127
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 267
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mac_address"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 165
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ssid"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 89
+      },
+      "id": 68,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "rx_signal"
+          }
+        ]
+      },
+      "pluginVersion": "8.0.4",
+      "repeat": null,
+      "targets": [
+        {
+          "expr": "mktxp_wlan_clients_devices_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Client Devices",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "routerboard_address": true,
+              "routerboard_name": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 13,
+              "__name__": 1,
+              "dhcp_address": 3,
+              "dhcp_name": 2,
+              "instance": 12,
+              "interface": 11,
+              "job": 5,
+              "mac_address": 4,
+              "routerboard_address": 6,
+              "routerboard_name": 7,
+              "rx_rate": 8,
+              "tx_rate": 9,
+              "uptime": 10
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 89
+      },
+      "hiddenSeries": false,
+      "id": 37,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mktxp_wlan_registered_clients{routerboard_address=\"$node\"}",
+          "interval": "",
+          "legendFormat": "{{channel}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Number of clients",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:501",
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:502",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 97
+      },
+      "hiddenSeries": false,
+      "id": 61,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mktxp_wlan_clients_tx_ccq{routerboard_address=\"$node\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{dhcp_name}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "WLAN Clients Tx CCQ",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:108",
+          "decimals": null,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:109",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 97
+      },
+      "hiddenSeries": false,
+      "id": 63,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:176",
+          "alias": "/In/"
+        },
+        {
+          "$$hashKey": "object:177",
+          "alias": "/Out/",
+          "color": "#EAB839",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_wlan_clients_tx_bytes_total{routerboard_address=\"$node\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "In - {{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        },
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_wlan_clients_rx_bytes_total{routerboard_address=\"$node\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Outgoing traffic on interface ether1-gateway"
+          },
+          "legendFormat": "Out - {{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Clients Traffic",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "dB"
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 105
+      },
+      "hiddenSeries": false,
+      "id": 65,
+      "legend": {
+        "alignAsTable": false,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "mktxp_wlan_clients_signal_strength{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Clients Signal Strength",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:788",
+          "decimals": null,
+          "format": "dB",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:789",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 105
+      },
+      "hiddenSeries": false,
+      "id": 66,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "mktxp_wlan_clients_signal_to_noise{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Clients  Signal-to-Noise ",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:788",
+          "decimals": null,
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:789",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 112
+      },
+      "id": 33,
+      "panels": [],
+      "title": "CAPsMAN",
+      "type": "row"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "board"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 189
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "identity"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 103
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "version"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 110
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 113
+      },
+      "id": 35,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "expr": "mktxp_capsman_remote_caps_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{identity}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Remote Caps",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "routerboard_address": true,
+              "routerboard_name": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 10,
+              "__name__": 1,
+              "base_mac": 4,
+              "board": 3,
+              "identity": 2,
+              "instance": 5,
+              "job": 6,
+              "routerboard_address": 7,
+              "routerboard_name": 8,
+              "version": 9
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "__name__"
+            },
+            "properties": [
+              {
+                "id": "displayName"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "rx_signal"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 127
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 267
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mac_address"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 165
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ssid"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 18,
+        "x": 6,
+        "y": 113
+      },
+      "id": 41,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "rx_signal"
+          }
+        ]
+      },
+      "pluginVersion": "8.0.4",
+      "repeat": null,
+      "targets": [
+        {
+          "expr": "mktxp_capsman_clients_devices_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CAPsMAN Clients",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "routerboard_address": true,
+              "routerboard_name": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 15,
+              "__name__": 1,
+              "dhcp_address": 3,
+              "dhcp_name": 2,
+              "instance": 9,
+              "interface": 10,
+              "job": 12,
+              "mac_address": 4,
+              "routerboard_address": 13,
+              "routerboard_name": 14,
+              "rx_rate": 6,
+              "rx_signal": 5,
+              "ssid": 11,
+              "tx_rate": 7,
+              "uptime": 8
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 119
+      },
+      "id": 47,
+      "interval": null,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "mktxp_capsman_registrations_count{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ interface }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        },
+        {
+          "expr": "sum(mktxp_capsman_registrations_count{routerboard_address=\"$node\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Total",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CAPsMAN Registrations",
+      "type": "bargauge"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": -80
+              },
+              {
+                "color": "purple",
+                "value": -70
+              },
+              {
+                "color": "green",
+                "value": -60
+              },
+              {
+                "color": "rgb(20, 104, 9)",
+                "value": -40
+              }
+            ]
+          },
+          "unit": "dB"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 6,
+        "x": 0,
+        "y": 126
+      },
+      "id": 48,
+      "links": [],
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "mktxp_capsman_clients_signal_strength{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Registered Client Signal Strength",
+      "type": "bargauge"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "unit": "dB"
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 18,
+        "x": 6,
+        "y": 128
+      },
+      "hiddenSeries": false,
+      "id": 49,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "mktxp_capsman_clients_signal_strength{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CAPsMan Clients Signal Strength",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:788",
+          "decimals": null,
+          "format": "dB",
+          "label": null,
+          "logBase": 1,
+          "max": "-16",
+          "min": "-80",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:789",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 137
+      },
+      "hiddenSeries": false,
+      "id": 39,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:176",
+          "alias": "/In/"
+        },
+        {
+          "$$hashKey": "object:177",
+          "alias": "/Out/",
+          "color": "#EAB839",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_capsman_clients_tx_bytes_total{routerboard_address=\"$node\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "In | {{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        },
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_capsman_clients_rx_bytes_total{routerboard_address=\"$node\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Outgoing traffic on interface ether1-gateway"
+          },
+          "legendFormat": "Out | {{ dhcp_name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CAPsMAN Clients Traffic",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 147
+      },
+      "id": 80,
+      "panels": [],
+      "title": "MKTXP Metrics",
+      "type": "row"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "purple",
+                "value": 20
+              },
+              {
+                "color": "orange",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 148
+      },
+      "id": 78,
+      "links": [],
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_collection_time_total{routerboard_address=\"$node\"}[4m])  ",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "MKTXP Collection Times",
+      "type": "bargauge"
+    },
+    {
+      "aliasColors": {
+        "Incoming traffic on interface ether1-gateway": "#1F78C1",
+        "Outgoing traffic on interface ether1-gateway": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 6,
+        "y": 148
+      },
+      "hiddenSeries": false,
+      "id": 77,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:176",
+          "alias": "/In/"
+        },
+        {
+          "$$hashKey": "object:177",
+          "alias": "/Out/",
+          "color": "#EAB839",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "expr": "rate(mktxp_collection_time_total{routerboard_address=\"$node\"}[4m])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(mktxp_collection_time_total{routerboard_address=\"$node\"}[4m]))",
+          "interval": "",
+          "legendFormat": "Total",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "MKTXP Collection Times",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:706",
+          "format": "ms",
+          "label": null,
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:707",
+          "format": "short",
+          "label": null,
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "10s",
   "schemaVersion": 30,
   "style": "dark",
   "tags": [
+    "mikrotik",
     "dashboard",
-    "mikrotik"
+    "mktxp"
   ],
   "templating": {
     "list": [
@@ -1985,7 +5240,7 @@
           "value": "192.168.0.1"
         },
         "datasource": "Prometheus",
-        "definition": "label_values(mikrotik_system_uptime,address)",
+        "definition": "label_values(mktxp_system_identity_info, routerboard_address)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -1995,7 +5250,7 @@
         "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(mikrotik_system_uptime,address)",
+          "query": "label_values(mktxp_system_identity_info, routerboard_address)",
           "refId": "Prometheus-node-Variable-Query"
         },
         "refresh": 1,
@@ -2010,36 +5265,12 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
-  "timepicker": {
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
-  "timezone": "browser",
-  "title": "Mikrotik Exporter",
-  "uid": "000000168",
-  "version": 17
+  "timepicker": {},
+  "timezone": "",
+  "title": "Mikrotik MKTXP Exporter",
+  "uid": "0j4sdLm7z",
+  "version": 1
 }

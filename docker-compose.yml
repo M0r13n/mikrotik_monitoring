@@ -6,19 +6,6 @@ volumes:
 
 
 services:
-  # Mikrotik Exporter
-  # https://github.com/nshttpd/mikrotik-exporter  
-  mikrotik_exporter:
-    image: nshttpd/mikrotik-exporter-linux-arm64:1.0.12-DEVEL # Change this depending on your version and/or if you built the image locally
-    volumes:
-      - './mikrotik_exporter:/config'
-    env_file: .env
-    ports:
-      - 9436:9436
-    networks:
-      - default
-    restart: unless-stopped
-
   # Prometheus
   # https://github.com/stefanprodan/dockprom
   prometheus:
@@ -59,3 +46,15 @@ services:
       - default
     labels:
       org.label-schema.group: "monitoring"
+
+  # MKTXP
+  # https://github.com/akpw/mktxp
+  mktxp:
+    image: mktxp:latest
+    volumes:
+      - './mktxp/:/root/mktxp/'
+    ports:
+      - 49090:49090
+    networks:
+      - default
+    restart: unless-stopped

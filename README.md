@@ -4,10 +4,8 @@ Over the past years I replaced all my networking gear with Mikrotik devices. I a
 
 - [A blog post by Devin Smith that first got me interested](https://blog.devinsmith.co.za/home-internet-grafana-lockdown/)
 - [A somewhat useable Grafana Dashboard](https://grafana.com/grafana/dashboards/10950)
-- [A Prometheus exporter for Mikrotik devices](https://github.com/nshttpd/mikrotik-exporter)
-
-NOTE: I recently stumbled across [mktxp](https://github.com/akpw/mktxp). This is an alternative for `mikrotik-exporter` and seems to be more actively maintained. I am currently thinking about switching to this exporter.
-
+- [A Prometheus exporter for Mikrotik devices written in Python](https://github.com/akpw/mktxp).
+- [A Prometheus exporter for Mikrotik devices written in Go](https://github.com/nshttpd/mikrotik-exporter)
 ## Setup
 
 - Router running RouterOS 7.x.x
@@ -51,11 +49,25 @@ sudo pip3 install docker-compose
 sudo systemctl enable docker
 ```
 
-Spin up Grafana and Prometheus:
+Build the mktxp Docker image
+
+```bash
+# Get the mktxp repository
+git clone https://github.com/akpw/mktxp.git
+
+# Go into the newly downloaded repo
+cd mktxp
+
+# Build the docker image
+docker build -t mktxp
+```
+
+Now get this repo and install all services:
 
 ```bash
 # Clone this repo
 git clone https://github.com/M0r13n/mikrotik_monitoring.git
+
 
 # Go into the cloned directory
 cd mikrotik_monitoring
@@ -63,5 +75,10 @@ cd mikrotik_monitoring
 # Let docker-compose do it's job
 sudo docker-compose up -d
 ```
+
+You may need to adjust the following configuration files and add your own credentials for your router:
+
+- `mktxp/mktxp.conf`
+
 
 Done. You should now be able to open the Grafana dashboard on Port 3000 of your Raspberry Pi.

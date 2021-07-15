@@ -28,4 +28,4 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-         - targets: ['mikrotik_exporter:9436']
+         - targets: ['mikrotik_exporter:9436', 'mktxp:49090']
