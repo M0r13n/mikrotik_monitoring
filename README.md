@@ -6,6 +6,7 @@ Over the past years I replaced all my networking gear with Mikrotik devices. I a
 - [A somewhat useable Grafana Dashboard](https://grafana.com/grafana/dashboards/10950)
 - [A Prometheus exporter for Mikrotik devices written in Python](https://github.com/akpw/mktxp).
 - [A Prometheus exporter for Mikrotik devices written in Go](https://github.com/nshttpd/mikrotik-exporter)
+
 ## Setup
 
 - Router running RouterOS 7.x.x
@@ -29,9 +30,43 @@ Create a user that is part of the group:
 
 `/user add name=prometheus group=prometheus password=TOP_SECRET`
 
-Because the library makes a new connection for every API request, your logs are getting cluttered:
 
-`system logging set 0 topics=info,!account`
+## Prepare Synology NAS
+
+Firstly, activate SNMPv3 in your Synology NAS und set a username and password (md5).
+
+In order to get stats from a Synology NAS into Prometheus an exporter is needed.
+
+-> https://github.com/prometheus/snmp_exporter
+
+This exporter comes with a pre-build docker image.
+
+There is a pre-build `snmp.yml`, where you only need to update the username and password in the bottom `auth` section.
+
+<details>
+<summary>Optional: How to generate `snmp.yml`</summary>
+
+The generator file can be found in `./synology/generator.yml`.
+
+Create the `snmp.yml` exporter config:
+
+1. Change `auth.username` and `auth.password` to match the Synology NAS
+2. Make a temporary directory: `mkdir tmp && cd tmp`
+3. Get the SNMP exporter repo: `git clone git@github.com:prometheus/snmp_exporter.git && cd snmp_exporter`
+4. Copy the generator file: `cp ../../synology/generator.yml ./generator && cd generator` (yes override)
+5. Prepare the MIB files: `make mibs`
+6. Generate the `snmp.yml` file using Docker:
+```bash
+docker build -t snmp-generator .
+sudo docker run -ti \
+  -v "${PWD}:/opt/" \
+  snmp-generator generate 
+```
+7. If everything went well, a config file has been written to `./snmp.yml`
+8. Copy this file into the Synology folder (next to the generator.yml): `cp ./snmp.yml ../../../synology/`
+
+</details>
+
 
 ## Prepare Raspi
 You need Ubuntu Server for ARM 64 bit in order to use this setup. You may also use Raspian, but then you are limited to 32bit ARM executables. This would mean, that you need to compile the `mikrotik-exporter` by hand, because there are no predefined 32-bit Docker images.

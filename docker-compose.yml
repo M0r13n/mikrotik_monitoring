@@ -58,3 +58,13 @@ services:
     networks:
       - default
     restart: unless-stopped
+  
+  # SNMP Exporter 
+  # https://github.com/prometheus/snmp_exporter
+  synology_snmp:
+    image: "prom/snmp-exporter"
+    restart: unless-stopped
+    ports:
+      - 9116:9116
+    volumes:
+      - ./synology/snmp.yml:/etc/snmp_exporter/snmp.yml
