@@ -28,26 +28,6 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-         - targets: ['mikrotik_exporter:9436', 'mktxp:49090']
-
-  # This job queries the Synology Exporter
-  - job_name: 'synology-snmp'
-
-    static_configs:
-      - targets:
-        - 192.168.0.114  # Actual IP of the Synology NAS
-    
-    # Non default metrics path
-    # Full URL looks something like: http://<EXPORTER_IP>:9116/snmp?module=synology&target=<NAS_IP>
-    metrics_path: /snmp
-
-    params:
-      module: [synology] # Tell the exporter to use the synology module
-
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: synology_snmp:9116  # SNMP exporter's hostname:port.
+         - targets:
+            - 'mikrotik_exporter:9436'
+            - 'mktxp:49090'
