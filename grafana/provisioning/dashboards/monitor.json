@@ -4872,7 +4872,7 @@
           "application": {
             "filter": "Network"
           },
-          "expr": "rate(mktxp_capsman_clients_tx_bytes_total{routerboard_address=\"$node\"}[4m])",
+          "expr": "rate(mktxp_capsman_clients_tx_bytes_total{routerboard_address=\"$node\"}[15s]) * 8",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -4899,7 +4899,7 @@
           "application": {
             "filter": "Network"
           },
-          "expr": "rate(mktxp_capsman_clients_rx_bytes_total{routerboard_address=\"$node\"}[4m])",
+          "expr": "rate(mktxp_capsman_clients_rx_bytes_total{routerboard_address=\"$node\"}[15s]) * 8",
           "format": "time_series",
           "functions": [],
           "group": {
