@@ -38,9 +38,6 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_INSTALL_PLUGINS=flant-statusmap-panel
     restart: unless-stopped
-    ports:
-      - 3000:3000
-      - 80:3000
     networks:
       - default
     labels:
@@ -55,4 +52,20 @@ services:
     networks:
       - default
     restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      # Uncomment the four lines below to enable HTTPS
+      # - ./nginx/nginx.conf.https:/etc/nginx/conf.d/default.conf
+      # - ./nginx/nginx-selfsigned.key:/etc/nginx/ssl/nginx-selfsigned.key
+      # - ./nginx/nginx-selfsigned.crt:/etc/nginx/ssl/nginx-selfsigned.crt
+      # - ./nginx/self-signed.conf:/etc/nginx/ssl/self-signed.conf
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - default
   

@@ -1,0 +1,22 @@
+server {
+  listen 80;
+
+  server_name 192.168.0.10;
+
+  # Your domain
+  return 302 https://192.168.0.10;
+
+}
+
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  include ssl/self-signed.conf;
+
+  # Your domain
+  server_name 192.168.0.10;
+
+  location / {
+   proxy_pass http://grafana:3000/;
+  }
+}

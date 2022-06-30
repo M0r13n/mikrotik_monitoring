@@ -87,3 +87,24 @@ Done. You should now be able to open the Grafana dashboard on Port 3000 of your 
 ## Multiple Nodes
 
 It is possible to monitor multiple (Mikrotik) devices. Just change add as many devices to `mktxp/mktxp.conf` as you want. 
+
+## HTTPS
+
+It is also possible to access the Grafana Dashboard over HTTPS.
+Depending on your security requirements and/or threat model it might be a good idea to enable HTTPS.
+
+Generate a self signed certificate for your domain:
+
+`sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./nginx/nginx-selfsigned.key -out ./nginx/nginx-selfsigned.crt`
+
+This command generates two files:
+- the private key: `./nginx/nginx-selfsigned.key`
+- the certificate file `./nginx/nginx-selfsigned.crt`
+
+Both files need to be mapped as a volume to `/etc/nginx/ssl/`.
+
+Then you also need to adjust the `docker-compose.yml` file:
+- comment the line `./nginx/nginx.conf:/etc/nginx/conf.d/default.conf`
+- and uncomment the four lines below
+
+Finally you need to adjust the `nginx/nginx.conf.https` and adjust the `server_name` to your domain.
