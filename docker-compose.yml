@@ -18,8 +18,6 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
     restart: unless-stopped
-    ports:
-      - 9090:9090
     networks:
       - default
     labels:
@@ -54,8 +52,6 @@ services:
     image: mktxp:latest
     volumes:
       - './mktxp/:/root/mktxp/'
-    ports:
-      - 49090:49090
     networks:
       - default
     restart: unless-stopped
