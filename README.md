@@ -97,14 +97,24 @@ Generate a self signed certificate for your domain:
 
 `sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./nginx/nginx-selfsigned.key -out ./nginx/nginx-selfsigned.crt`
 
-This command generates two files:
-- the private key: `./nginx/nginx-selfsigned.key`
-- the certificate file `./nginx/nginx-selfsigned.crt`
+Replace the content of `./nginx/nginx.conf` with:
 
-Both files need to be mapped as a volume to `/etc/nginx/ssl/`.
+```txt
+server {
+  listen 80;
+	listen [::]:80;
+	server_name _;
+	return 301 https://$host$request_uri;
+}
 
-Then you also need to adjust the `docker-compose.yml` file:
-- comment the line `./nginx/nginx.conf:/etc/nginx/conf.d/default.conf`
-- and uncomment the four lines below
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  include ssl/self-signed.conf;
 
-Finally you need to adjust the `nginx/nginx.conf.https` and adjust the `server_name` to your domain.
+  location / {
+   proxy_pass http://grafana:3000/;
+  }
+}
+
+```
