@@ -50,7 +50,14 @@ sudo systemctl enable docker
 sudo reboot
 ```
 
-Build the mktxp Docker image
+<details>
+<summary>Optional: Build the Docker Image for mktxp</summary>
+
+It might be necessary to build the Docker Image for: https://github.com/akpw/mktxp.
+This is especially the case, if your architecture is not:
+- linux/amd64
+- linux/arm/v7
+- linux/arm64
 
 ```bash
 # Get the mktxp repository
@@ -60,8 +67,10 @@ git clone https://github.com/akpw/mktxp.git
 cd mktxp
 
 # Build the docker image
-docker build . -t mktxp
+docker build . -t leonmorten/mktxp:latest
 ```
+
+</details>
 
 Now get this repo and install all services:
 

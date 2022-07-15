@@ -46,7 +46,9 @@ services:
   # MKTXP
   # https://github.com/akpw/mktxp
   mktxp:
-    image: mktxp:latest
+    # https://github.com/M0r13n/mikrotik_monitoring
+    # Note: You might need to build the image yourself if not on AMD64 or ARM-v7/V8
+    image: leonmorten/mktxp:latest
     volumes:
       - './mktxp/:/root/mktxp/'
     networks:
