@@ -16,17 +16,13 @@
   "editable": true,
   "gnetId": 13679,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1626361813995,
+  "id": 1,
+  "iteration": 1659266546964,
   "links": [],
   "panels": [
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -921,85 +917,162 @@
       "type": "stat"
     },
     {
-      "aliasColors": {
-        "In | defconf": "dark-red",
-        "In | ether2": "dark-blue",
-        "Incoming traffic on interface ether1-gateway": "#1F78C1",
-        "Out | defconf": "semi-dark-green",
-        "Outgoing traffic on interface ether1-gateway": "#EAB839"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": "Prometheus",
       "description": "",
-      "editable": true,
-      "error": false,
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bps"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "In | defconf"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "In | ether2"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Incoming traffic on interface ether1-gateway"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#1F78C1",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Out | defconf"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Outgoing traffic on interface ether1-gateway"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EAB839",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
-      "fill": 3,
-      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
         "y": 9
       },
-      "hiddenSeries": false,
       "id": 75,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": null,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
       "options": {
-        "alertThreshold": false
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "8.0.4",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:842",
-          "alias": "/In/"
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right"
         },
-        {
-          "$$hashKey": "object:843",
-          "alias": "/Out/",
-          "color": "#56A64B",
-          "transform": "negative-Y"
+        "tooltip": {
+          "mode": "single"
         }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      },
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Network"
           },
           "exemplar": true,
-          "expr": "rate(mktxp_interface_rx_byte_total{routerboard_address=\"$node\"}[15s]) * 8",
+          "expr": " rate(mktxp_interface_rx_byte_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -1027,7 +1100,7 @@
             "filter": "Network"
           },
           "exemplar": true,
-          "expr": "rate(mktxp_interface_tx_byte_total{routerboard_address=\"$node\"}[15s]) * 8",
+          "expr": "- rate(mktxp_interface_tx_byte_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -1050,62 +1123,186 @@
           "refId": "B"
         }
       ],
-      "thresholds": [],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
       "title": "Interface traffic ",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:706",
-          "format": "bps",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pps"
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 92,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
         {
-          "$$hashKey": "object:707",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+          "exemplar": true,
+          "expr": "rate(mktxp_interface_rx_packet_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
         }
       ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "title": "Incoming Packets",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 94,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "rate(mktxp_interface_tx_packet_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Outgoing packets",
+      "type": "timeseries"
     },
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 24
       },
       "id": 2,
       "panels": [],
@@ -1146,7 +1343,7 @@
         "h": 8,
         "w": 5,
         "x": 0,
-        "y": 17
+        "y": 25
       },
       "id": 20,
       "interval": null,
@@ -1304,7 +1501,7 @@
         "h": 11,
         "w": 19,
         "x": 5,
-        "y": 17
+        "y": 25
       },
       "id": 25,
       "options": {
@@ -1404,7 +1601,7 @@
         "h": 3,
         "w": 5,
         "x": 0,
-        "y": 25
+        "y": 33
       },
       "id": 23,
       "interval": null,
@@ -1460,15 +1657,11 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 36
       },
       "id": 45,
       "panels": [],
@@ -1518,7 +1711,7 @@
         "h": 5,
         "w": 2,
         "x": 0,
-        "y": 29
+        "y": 37
       },
       "id": 70,
       "options": {
@@ -1576,7 +1769,7 @@
         "h": 5,
         "w": 4,
         "x": 2,
-        "y": 29
+        "y": 37
       },
       "id": 71,
       "links": [],
@@ -1671,7 +1864,7 @@
         "h": 5,
         "w": 6,
         "x": 6,
-        "y": 29
+        "y": 37
       },
       "id": 69,
       "options": {
@@ -1723,7 +1916,7 @@
         "h": 16,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 55,
@@ -1879,7 +2072,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 34
+        "y": 42
       },
       "id": 51,
       "options": {
@@ -1942,7 +2135,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 34
+        "y": 42
       },
       "id": 53,
       "options": {
@@ -2093,7 +2286,7 @@
         "h": 4,
         "w": 12,
         "x": 0,
-        "y": 41
+        "y": 49
       },
       "id": 85,
       "options": {
@@ -2165,15 +2358,11 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 53
       },
       "id": 84,
       "panels": [],
@@ -2205,7 +2394,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 46
+        "y": 54
       },
       "hiddenSeries": false,
       "id": 81,
@@ -2338,7 +2527,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 46
+        "y": 54
       },
       "hiddenSeries": false,
       "id": 82,
@@ -2471,7 +2660,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 53
+        "y": 61
       },
       "hiddenSeries": false,
       "id": 43,
@@ -2604,7 +2793,7 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 53
+        "y": 61
       },
       "hiddenSeries": false,
       "id": 76,
@@ -2732,7 +2921,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 64
+        "y": 72
       },
       "hiddenSeries": false,
       "id": 27,
@@ -2836,7 +3025,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 64
+        "y": 72
       },
       "hiddenSeries": false,
       "id": 74,
@@ -2923,15 +3112,11 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 71
+        "y": 79
       },
       "id": 90,
       "panels": [],
@@ -2973,8 +3158,9 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 72
+        "y": 80
       },
+      "hideBranding": false,
       "highlightCards": true,
       "id": 87,
       "legend": {
@@ -3119,7 +3305,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 72
+        "y": 80
       },
       "id": 88,
       "options": {
@@ -3189,15 +3375,11 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 80
+        "y": 88
       },
       "id": 29,
       "panels": [],
@@ -3222,7 +3404,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 81
+        "y": 89
       },
       "hiddenSeries": false,
       "id": 31,
@@ -3324,7 +3506,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 81
+        "y": 89
       },
       "hiddenSeries": false,
       "id": 73,
@@ -3501,7 +3683,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 89
+        "y": 97
       },
       "id": 68,
       "options": {
@@ -3582,7 +3764,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 89
+        "y": 97
       },
       "hiddenSeries": false,
       "id": 37,
@@ -3685,7 +3867,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 97
+        "y": 105
       },
       "hiddenSeries": false,
       "id": 61,
@@ -3794,7 +3976,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 97
+        "y": 105
       },
       "hiddenSeries": false,
       "id": 63,
@@ -3958,7 +4140,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 105
+        "y": 113
       },
       "hiddenSeries": false,
       "id": 65,
@@ -4083,7 +4265,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 105
+        "y": 113
       },
       "hiddenSeries": false,
       "id": 66,
@@ -4192,15 +4374,11 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 112
+        "y": 120
       },
       "id": 33,
       "panels": [],
@@ -4276,7 +4454,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 113
+        "y": 121
       },
       "id": 35,
       "options": {
@@ -4422,7 +4600,7 @@
         "h": 15,
         "w": 18,
         "x": 6,
-        "y": 113
+        "y": 121
       },
       "id": 41,
       "options": {
@@ -4520,7 +4698,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 119
+        "y": 127
       },
       "id": 47,
       "interval": null,
@@ -4622,7 +4800,7 @@
         "h": 11,
         "w": 6,
         "x": 0,
-        "y": 126
+        "y": 134
       },
       "id": 48,
       "links": [],
@@ -4693,7 +4871,7 @@
         "h": 9,
         "w": 18,
         "x": 6,
-        "y": 128
+        "y": 136
       },
       "hiddenSeries": false,
       "id": 49,
@@ -4822,7 +5000,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 137
+        "y": 145
       },
       "hiddenSeries": false,
       "id": 39,
@@ -4969,15 +5147,11 @@
     {
       "collapsed": false,
       "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 147
+        "y": 155
       },
       "id": 80,
       "panels": [],
@@ -5022,7 +5196,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 148
+        "y": 156
       },
       "id": 78,
       "links": [],
@@ -5097,7 +5271,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 148
+        "y": 156
       },
       "hiddenSeries": false,
       "id": 77,
@@ -5236,8 +5410,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "192.168.0.1",
-          "value": "192.168.0.1"
+          "text": "10.0.10.1",
+          "value": "10.0.10.1"
         },
         "datasource": "Prometheus",
         "definition": "label_values(mktxp_system_identity_info, routerboard_address)",
@@ -5272,5 +5446,5 @@
   "timezone": "",
   "title": "Mikrotik MKTXP Exporter",
   "uid": "0j4sdLm7z",
-  "version": 1
+  "version": 7
 }
