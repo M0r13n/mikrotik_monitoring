@@ -9,7 +9,7 @@ services:
   # Prometheus
   # https://github.com/stefanprodan/dockprom
   prometheus:
-    image: prom/prometheus:v2.28.1
+    image: prom/prometheus:v2.37.0
     container_name: prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -26,7 +26,7 @@ services:
   # Grafana
   # https://github.com/stefanprodan/dockprom
   grafana:
-    image: grafana/grafana:8.0.4
+    image: grafana/grafana:9.0.6
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
