@@ -123,6 +123,7 @@ server {
   include ssl/self-signed.conf;
 
   location / {
+   proxy_set_header Host $http_host; 
    proxy_pass http://grafana:3000/;
   }
 }
