@@ -1,108 +1,28 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "flant-statusmap-panel",
-      "name": "Statusmap",
-      "version": "0.5.1"
-    },
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.0.6"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph (old)",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
+        "datasource": "-- Grafana --",
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
         "type": "dashboard"
       }
     ]
   },
   "description": "Mikrotik MKTXP Exporter metrics",
   "editable": true,
-  "fiscalYearStartMonth": 0,
   "gnetId": 13679,
   "graphTooltip": 0,
-  "id": null,
+  "id": 1,
+  "iteration": 1659266546964,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -111,23 +31,12 @@
       },
       "id": 10,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "System",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -166,6 +75,7 @@
         "y": 1
       },
       "id": 72,
+      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -183,13 +93,9 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_system_identity_info{routerboard_address=\"$node\"}",
           "instant": true,
           "interval": "",
@@ -201,10 +107,8 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -242,6 +146,7 @@
         "y": 1
       },
       "id": 12,
+      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -259,15 +164,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "General"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -297,10 +198,8 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
@@ -345,12 +244,11 @@
         "y": 1
       },
       "id": 14,
+      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
         "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -362,15 +260,11 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Memory"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "(1 - mktxp_system_free_memory{routerboard_address=\"$node\"} / mktxp_system_total_memory{routerboard_address=\"$node\"})*100",
           "format": "time_series",
@@ -396,10 +290,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_system_cpu_load{routerboard_address=\"$node\"}",
           "instant": true,
           "interval": "",
@@ -407,10 +297,6 @@
           "refId": "C"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "(1 - mktxp_system_free_hdd_space{routerboard_address=\"$node\"} / mktxp_system_total_hdd_space{routerboard_address=\"$node\"})*100",
           "instant": true,
           "interval": "",
@@ -418,6 +304,8 @@
           "refId": "B"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "type": "bargauge"
     },
     {
@@ -425,10 +313,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -467,7 +352,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -479,10 +364,6 @@
         {
           "application": {
             "filter": "CPU"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "mktxp_system_cpu_load{routerboard_address=\"$node\"}",
@@ -509,7 +390,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "CPU load",
       "tooltip": {
         "msResolution": false,
@@ -519,7 +402,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -527,6 +412,7 @@
         {
           "$$hashKey": "object:398",
           "format": "percent",
+          "label": null,
           "logBase": 10,
           "max": "100",
           "min": "0",
@@ -535,12 +421,16 @@
         {
           "$$hashKey": "object:399",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -551,10 +441,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -592,7 +479,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -618,10 +505,6 @@
         {
           "application": {
             "filter": "Memory"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_system_total_hdd_space{routerboard_address=\"$node\"} - mktxp_system_free_hdd_space{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -649,10 +532,6 @@
           "application": {
             "filter": "Memory"
           },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_system_total_hdd_space{routerboard_address=\"$node\"}",
           "format": "time_series",
           "functions": [],
@@ -677,7 +556,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "HDD Utilization",
       "tooltip": {
         "msResolution": false,
@@ -687,7 +568,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -695,26 +578,30 @@
         {
           "$$hashKey": "object:365",
           "format": "decbytes",
+          "label": null,
           "logBase": 1,
+          "max": null,
           "min": "0",
           "show": true
         },
         {
           "$$hashKey": "object:366",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -753,6 +640,7 @@
         "y": 3
       },
       "id": 6,
+      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -770,13 +658,9 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
           "instant": true,
           "interval": "",
@@ -788,10 +672,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -834,7 +715,6 @@
       },
       "id": 59,
       "options": {
-        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -846,13 +726,9 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_system_routerboard_temperature{routerboard_address=\"$node\"}  ",
           "instant": true,
           "interval": "",
@@ -860,14 +736,14 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Temperature",
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -905,6 +781,7 @@
         "y": 5
       },
       "id": 8,
+      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -922,15 +799,11 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "General"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -960,10 +833,8 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -992,6 +863,7 @@
         "y": 7
       },
       "id": 57,
+      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -1009,15 +881,11 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "General"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_system_routerboard_voltage{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -1043,14 +911,13 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Voltage",
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1195,8 +1062,7 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "pluginVersion": "8.0.4",
@@ -1204,10 +1070,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": " rate(mktxp_interface_rx_byte_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
@@ -1237,10 +1099,6 @@
           "application": {
             "filter": "Network"
           },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "exemplar": true,
           "expr": "- rate(mktxp_interface_tx_byte_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
           "format": "time_series",
@@ -1265,14 +1123,13 @@
           "refId": "B"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Interface traffic ",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1341,16 +1198,11 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "exemplar": true,
           "expr": "rate(mktxp_interface_rx_packet_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
           "interval": "",
@@ -1362,10 +1214,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1431,16 +1280,11 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "exemplar": true,
           "expr": "rate(mktxp_interface_tx_packet_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
           "interval": "",
@@ -1453,10 +1297,7 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1465,23 +1306,12 @@
       },
       "id": 2,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "DHCP",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1516,11 +1346,10 @@
         "y": 25
       },
       "id": 20,
+      "interval": null,
       "links": [],
       "options": {
         "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -1532,15 +1361,11 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_dhcp_lease_active_count{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -1566,14 +1391,13 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "DHCP Leases by Server",
       "type": "bargauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1582,8 +1406,7 @@
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -1682,13 +1505,6 @@
       },
       "id": 25,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
@@ -1697,13 +1513,10 @@
           }
         ]
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
+      "repeat": null,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_dhcp_lease_info{routerboard_address=\"$node\"}",
           "format": "table",
           "instant": true,
@@ -1712,6 +1525,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "DHCP Leases",
       "transformations": [
         {
@@ -1753,10 +1568,8 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1791,11 +1604,10 @@
         "y": 33
       },
       "id": 23,
+      "interval": null,
       "links": [],
       "options": {
         "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -1807,15 +1619,11 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(mktxp_dhcp_lease_active_count{routerboard_address=\"$node\"})",
           "format": "time_series",
@@ -1841,15 +1649,14 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Total DHCP Leases",
       "type": "bargauge"
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1858,23 +1665,11 @@
       },
       "id": 45,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Network",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1932,13 +1727,9 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_routes_total_routes{routerboard_address=\"$node\"}",
           "format": "time_series",
           "instant": true,
@@ -1947,14 +1738,13 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Total Routes",
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "links": [],
@@ -1985,8 +1775,6 @@
       "links": [],
       "options": {
         "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -1998,15 +1786,11 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_routes_protocol_count{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -2032,14 +1816,13 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Routes per protocol",
       "type": "bargauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2086,8 +1869,6 @@
       "id": 69,
       "options": {
         "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -2099,13 +1880,9 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_interface_full_duplex{routerboard_address=\"$node\"}",
           "format": "time_series",
           "instant": true,
@@ -2114,6 +1891,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Ethernet Ports: Full Duplex",
       "type": "bargauge"
     },
@@ -2122,10 +1901,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -2164,7 +1940,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2176,10 +1952,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_interface_rx_error_total{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -2204,10 +1976,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_interface_tx_error_total{routerboard_address=\"$node\"}",
           "format": "time_series",
           "hide": false,
@@ -2218,7 +1986,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Interface Errors",
       "tooltip": {
         "msResolution": false,
@@ -2228,7 +1998,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -2236,25 +2008,29 @@
         {
           "$$hashKey": "object:265",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:266",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2301,8 +2077,6 @@
       "id": 51,
       "options": {
         "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -2314,13 +2088,9 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_interface_status{routerboard_address=\"$node\"}",
           "format": "time_series",
           "instant": true,
@@ -2329,21 +2099,19 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Ethernet Ports: Status",
       "type": "bargauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": "auto",
+            "align": null,
             "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -2371,22 +2139,11 @@
       },
       "id": 53,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_interface_rate{routerboard_address=\"$node\"}",
           "format": "table",
           "instant": true,
@@ -2395,6 +2152,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Rates",
       "transformations": [
         {
@@ -2423,10 +2182,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2435,8 +2191,7 @@
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -2535,13 +2290,6 @@
       },
       "id": 85,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
@@ -2550,13 +2298,9 @@
           }
         ]
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_poe_info{routerboard_address=\"$node\"}",
           "format": "table",
           "instant": true,
@@ -2565,6 +2309,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "POE",
       "transformations": [
         {
@@ -2611,10 +2357,7 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2623,15 +2366,6 @@
       },
       "id": 84,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Firewall",
       "type": "row"
     },
@@ -2643,10 +2377,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "editable": true,
       "error": false,
@@ -2677,6 +2408,7 @@
         "min": true,
         "rightSide": false,
         "show": true,
+        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -2689,7 +2421,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2701,10 +2433,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_firewall_filter_total{routerboard_address=\"$node\", log=\"1\"}[4m])",
           "format": "time_series",
@@ -2731,7 +2459,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Logged Firewall Rules Traffic ",
       "tooltip": {
         "msResolution": false,
@@ -2741,7 +2471,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -2751,17 +2483,23 @@
           "format": "decbytes",
           "label": "",
           "logBase": 2,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:707",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -2772,10 +2510,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "editable": true,
       "error": false,
@@ -2806,6 +2541,7 @@
         "min": true,
         "rightSide": false,
         "show": true,
+        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -2818,7 +2554,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2830,10 +2566,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_firewall_raw_total{routerboard_address=\"$node\", log=\"1\"}[4m])",
           "format": "time_series",
@@ -2860,7 +2592,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Logged Raw Firewall Rules Traffic ",
       "tooltip": {
         "msResolution": false,
@@ -2870,7 +2604,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -2880,17 +2616,23 @@
           "format": "decbytes",
           "label": "",
           "logBase": 2,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:707",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -2901,10 +2643,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "editable": true,
       "error": false,
@@ -2935,6 +2674,7 @@
         "min": true,
         "rightSide": false,
         "show": true,
+        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -2947,7 +2687,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2959,10 +2699,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_firewall_filter_total{routerboard_address=\"$node\"}[4m])",
           "format": "time_series",
@@ -2989,7 +2725,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Firewall Rules Traffic ",
       "tooltip": {
         "msResolution": false,
@@ -2999,7 +2737,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -3009,17 +2749,23 @@
           "format": "decbytes",
           "label": "",
           "logBase": 2,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:707",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -3030,10 +2776,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "editable": true,
       "error": false,
@@ -3064,6 +2807,7 @@
         "min": true,
         "rightSide": false,
         "show": true,
+        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -3076,7 +2820,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3088,10 +2832,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_firewall_raw_total{routerboard_address=\"$node\"}[4m])",
           "format": "time_series",
@@ -3118,7 +2858,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Raw Firewall Rules Traffic ",
       "tooltip": {
         "msResolution": false,
@@ -3128,7 +2870,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -3138,17 +2882,23 @@
           "format": "decbytes",
           "label": "",
           "logBase": 2,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:707",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -3156,10 +2906,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
@@ -3197,7 +2944,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3207,10 +2954,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_internet_bandwidth",
           "instant": false,
           "interval": "",
@@ -3219,7 +2962,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Internet Bandwidth",
       "tooltip": {
         "shared": true,
@@ -3228,7 +2973,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -3239,17 +2986,23 @@
           "format": "binbps",
           "label": "",
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:55",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -3257,10 +3010,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
@@ -3298,7 +3048,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3308,10 +3058,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_internet_latency",
           "instant": false,
           "interval": "",
@@ -3320,7 +3066,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Internet Latency",
       "tooltip": {
         "shared": true,
@@ -3329,7 +3077,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -3340,25 +3090,28 @@
           "format": "ms",
           "label": "",
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:55",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3367,15 +3120,6 @@
       },
       "id": 90,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Netwatch",
       "type": "row"
     },
@@ -3383,6 +3127,7 @@
       "cards": {
         "cardHSpacing": 2,
         "cardMinWidth": 5,
+        "cardRound": null,
         "cardVSpacing": 2
       },
       "color": {
@@ -3407,10 +3152,7 @@
           }
         ]
       },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "gridPos": {
         "h": 8,
@@ -3437,10 +3179,6 @@
           "application": {
             "filter": "Network"
           },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "max_over_time(mktxp_netwatch_status{routerboard_address=\"$node\"}[1m])",
           "format": "time_series",
           "functions": [],
@@ -3465,6 +3203,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Status over time",
       "tooltip": {
         "customContent": "",
@@ -3495,10 +3235,7 @@
       }
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3507,8 +3244,7 @@
           "custom": {
             "align": "center",
             "displayMode": "color-text",
-            "filterable": false,
-            "inspect": false
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -3573,23 +3309,12 @@
       },
       "id": 88,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_netwatch_info{routerboard_address=\"$node\"}",
           "format": "table",
           "instant": true,
@@ -3598,6 +3323,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Netwatch Info",
       "transformations": [
         {
@@ -3647,10 +3374,7 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3659,15 +3383,6 @@
       },
       "id": 29,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Wireless",
       "type": "row"
     },
@@ -3676,10 +3391,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -3715,7 +3427,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3725,10 +3437,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_wlan_noise_floor{routerboard_address=\"$node\"}",
           "interval": "",
           "legendFormat": "{{channel}}",
@@ -3736,7 +3444,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Noise Floor",
       "tooltip": {
         "shared": true,
@@ -3745,7 +3455,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -3754,18 +3466,25 @@
           "$$hashKey": "object:156",
           "decimals": 1,
           "format": "dB",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:157",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -3773,10 +3492,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -3813,7 +3529,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3823,10 +3539,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_wlan_overall_tx_ccq{routerboard_address=\"$node\"}",
           "instant": false,
           "interval": "",
@@ -3835,7 +3547,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Overall Tx CCQ",
       "tooltip": {
         "shared": true,
@@ -3844,7 +3558,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -3853,26 +3569,29 @@
           "$$hashKey": "object:54",
           "decimals": 2,
           "format": "percent",
+          "label": null,
           "logBase": 1,
           "max": "100",
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:55",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3881,8 +3600,7 @@
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -3969,13 +3687,6 @@
       },
       "id": 68,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
@@ -3984,13 +3695,10 @@
           }
         ]
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
+      "repeat": null,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_wlan_clients_devices_info{routerboard_address=\"$node\"}",
           "format": "table",
           "instant": true,
@@ -3999,6 +3707,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Client Devices",
       "transformations": [
         {
@@ -4040,10 +3750,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
@@ -4080,7 +3787,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -4090,10 +3797,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_wlan_registered_clients{routerboard_address=\"$node\"}",
           "interval": "",
           "legendFormat": "{{channel}}",
@@ -4101,7 +3804,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Number of clients",
       "tooltip": {
         "shared": true,
@@ -4110,7 +3815,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -4119,18 +3826,25 @@
           "$$hashKey": "object:501",
           "decimals": 0,
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:502",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -4138,10 +3852,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "decimals": 0,
       "description": "",
       "fieldConfig": {
@@ -4180,7 +3891,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -4190,10 +3901,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_wlan_clients_tx_ccq{routerboard_address=\"$node\"}",
           "instant": false,
           "interval": "",
@@ -4202,7 +3909,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "WLAN Clients Tx CCQ",
       "tooltip": {
         "shared": true,
@@ -4211,27 +3920,36 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "$$hashKey": "object:108",
+          "decimals": null,
           "format": "percent",
+          "label": null,
           "logBase": 1,
           "max": "100",
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:109",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -4242,10 +3960,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "editable": true,
       "error": false,
@@ -4287,7 +4002,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -4310,10 +4025,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_wlan_clients_tx_bytes_total{routerboard_address=\"$node\"}[4m])",
           "format": "time_series",
@@ -4342,10 +4053,6 @@
           "application": {
             "filter": "Network"
           },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "rate(mktxp_wlan_clients_rx_bytes_total{routerboard_address=\"$node\"}[4m])",
           "format": "time_series",
           "functions": [],
@@ -4370,7 +4077,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Clients Traffic",
       "tooltip": {
         "msResolution": false,
@@ -4380,7 +4089,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -4388,18 +4099,25 @@
         {
           "$$hashKey": "object:706",
           "format": "bps",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:707",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -4407,10 +4125,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
@@ -4450,7 +4165,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -4462,10 +4177,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_wlan_clients_signal_strength{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -4492,7 +4203,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Clients Signal Strength",
       "tooltip": {
         "shared": true,
@@ -4501,26 +4214,36 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "$$hashKey": "object:788",
+          "decimals": null,
           "format": "dB",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:789",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -4528,10 +4251,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "links": [],
@@ -4570,7 +4290,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -4582,10 +4302,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_wlan_clients_signal_to_noise{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -4612,7 +4328,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Clients  Signal-to-Noise ",
       "tooltip": {
         "shared": true,
@@ -4621,34 +4339,41 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "$$hashKey": "object:788",
+          "decimals": null,
           "format": "none",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:789",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4657,30 +4382,17 @@
       },
       "id": 33,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "CAPsMAN",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
+            "filterable": false
           },
           "decimals": 2,
           "mappings": [],
@@ -4746,23 +4458,12 @@
       },
       "id": 35,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_capsman_remote_caps_info{routerboard_address=\"$node\"}",
           "format": "table",
           "instant": true,
@@ -4771,6 +4472,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Remote Caps",
       "transformations": [
         {
@@ -4805,10 +4508,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4817,8 +4517,7 @@
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -4905,13 +4604,6 @@
       },
       "id": 41,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
@@ -4920,13 +4612,10 @@
           }
         ]
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
+      "repeat": null,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "mktxp_capsman_clients_devices_info{routerboard_address=\"$node\"}",
           "format": "table",
           "instant": true,
@@ -4935,6 +4624,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "CAPsMAN Clients",
       "transformations": [
         {
@@ -4974,10 +4665,8 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -5012,11 +4701,10 @@
         "y": 127
       },
       "id": 47,
+      "interval": null,
       "links": [],
       "options": {
         "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -5028,15 +4716,11 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_capsman_registrations_count{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -5062,10 +4746,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "sum(mktxp_capsman_registrations_count{routerboard_address=\"$node\"})",
           "instant": true,
           "interval": "",
@@ -5073,14 +4753,13 @@
           "refId": "B"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "CAPsMAN Registrations",
       "type": "bargauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5127,8 +4806,6 @@
       "links": [],
       "options": {
         "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -5140,15 +4817,11 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_capsman_clients_signal_strength{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -5174,6 +4847,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Registered Client Signal Strength",
       "type": "bargauge"
     },
@@ -5182,10 +4857,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "links": [],
@@ -5224,7 +4896,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -5236,10 +4908,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "mktxp_capsman_clients_signal_strength{routerboard_address=\"$node\"}",
           "format": "time_series",
@@ -5266,7 +4934,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "CAPsMan Clients Signal Strength",
       "tooltip": {
         "shared": true,
@@ -5275,14 +4945,18 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "$$hashKey": "object:788",
+          "decimals": null,
           "format": "dB",
+          "label": null,
           "logBase": 1,
           "max": "-16",
           "min": "-80",
@@ -5291,12 +4965,16 @@
         {
           "$$hashKey": "object:789",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -5307,10 +4985,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -5351,7 +5026,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -5374,10 +5049,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_capsman_clients_tx_bytes_total{routerboard_address=\"$node\"}[15s]) * 8",
           "format": "time_series",
@@ -5406,10 +5077,6 @@
           "application": {
             "filter": "Network"
           },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "rate(mktxp_capsman_clients_rx_bytes_total{routerboard_address=\"$node\"}[15s]) * 8",
           "format": "time_series",
           "functions": [],
@@ -5434,7 +5101,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "CAPsMAN Clients Traffic",
       "tooltip": {
         "msResolution": false,
@@ -5444,7 +5113,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -5452,26 +5123,30 @@
         {
           "$$hashKey": "object:706",
           "format": "bps",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:707",
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5480,23 +5155,11 @@
       },
       "id": 80,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "MKTXP Metrics",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5539,8 +5202,6 @@
       "links": [],
       "options": {
         "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -5552,15 +5213,11 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "targets": [
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_collection_time_total{routerboard_address=\"$node\"}[4m])  ",
           "format": "time_series",
@@ -5586,6 +5243,8 @@
           "refId": "A"
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "MKTXP Collection Times",
       "type": "bargauge"
     },
@@ -5597,10 +5256,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -5641,7 +5297,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.0.6",
+      "pluginVersion": "8.0.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -5664,10 +5320,6 @@
         {
           "application": {
             "filter": "Network"
-          },
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "rate(mktxp_collection_time_total{routerboard_address=\"$node\"}[4m])",
           "format": "time_series",
@@ -5693,10 +5345,6 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
           "expr": "sum(rate(mktxp_collection_time_total{routerboard_address=\"$node\"}[4m]))",
           "interval": "",
           "legendFormat": "Total",
@@ -5704,7 +5352,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "MKTXP Collection Times",
       "tooltip": {
         "msResolution": false,
@@ -5714,7 +5364,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -5722,418 +5374,30 @@
         {
           "$$hashKey": "object:706",
           "format": "ms",
+          "label": null,
           "logBase": 2,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:707",
           "format": "short",
+          "label": null,
           "logBase": 2,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 164
-      },
-      "id": 96,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "python_gc_collections_total{generation=\"0\"}",
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "python_gc_objects_collected_total{generation=\"0\"}",
-          "hide": false,
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "builder",
-          "expr": "python_gc_objects_uncollectable_total{generation=\"0\"}",
-          "hide": false,
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "C"
-        }
-      ],
-      "title": "Python Garbage Collector",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
-        "y": 164
-      },
-      "id": 98,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "builder",
-          "expr": "process_open_fds",
-          "hide": false,
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Open File Descriptors",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 164
-      },
-      "id": 100,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "rate(process_cpu_seconds_total[4m])",
-          "legendFormat": "process_cpu_seconds_total",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "CPU Seconds",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 18,
-        "y": 164
-      },
-      "id": 102,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "builder",
-          "expr": "process_resident_memory_bytes",
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "builder",
-          "expr": "process_virtual_memory_bytes",
-          "hide": false,
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Process Memory",
-      "type": "timeseries"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 36,
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [
     "mikrotik",
@@ -6143,12 +5407,16 @@
   "templating": {
     "list": [
       {
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "10.0.10.1",
+          "value": "10.0.10.1"
         },
+        "datasource": "Prometheus",
         "definition": "label_values(mktxp_system_identity_info, routerboard_address)",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "node",
@@ -6178,6 +5446,5 @@
   "timezone": "",
   "title": "Mikrotik MKTXP Exporter",
   "uid": "0j4sdLm7z",
-  "version": 3,
-  "weekStart": ""
+  "version": 7
 }
