@@ -11,6 +11,7 @@ Over the past years I replaced all my networking gear with Mikrotik devices. I a
 
 - Router running RouterOS 7.x.x
 - Raspberry Pi 4 with 2 gb RAM (other PIs may also work, but I wanted ARM 64 bit)
+- before opening a new issue, please take a look at the [FAQ](#FAQ)
 
 ## Demo pictures
 
@@ -129,3 +130,38 @@ server {
 }
 
 ```
+
+## FAQ
+
+### Why are my graphs empty?
+
+It might happen that the Grafana dashboard loads, but the graphs remain empty. If the dashboard loads, but no data is shown, this may be caused by the following on of the following reasons:
+
+- invalid credentials for the monitored RouterOS device
+    - verify with: `/user/print detail`
+- invalid host and port for the monitored RouterOS device
+    - check that the IP or host name of the monitored device is correct
+- API service disabled on the RouterOS device
+    - verify with `/ip/service/print detail`
+
+### What distinguishes this project from other similar projects?
+
+This project is only a personal hobby.
+It do it mainly to learn something and to improve my skills.
+Therefore, the project does not compete with other projects.
+Nor do I aim for completeness or perfection with the project.
+The goal of this project is to develop a monitoring solution for multiple RouterOS devices simultaneously that is resource-efficient and scalable.
+
+### Why you don't use the SNMP for monitoring?
+
+Firstly SNMP based monitoring is painfully slow.
+In my experience SNMP walks are slow and CPU heavy.
+And I am not [alone with this](https://forum.mikrotik.com/viewtopic.php?t=132304).
+In my experience the API is much faster and produces less stress on the CPU of the monitored device.
+
+Secondly I never really got used to the way that SNMP metrics and queries are structured.
+I find them very hard to read.
+
+In addition, the API offers a lot of flexibility.
+Any command can be executed on RouterOS via the API.
+Thus it is possible to collect complex metrics.
