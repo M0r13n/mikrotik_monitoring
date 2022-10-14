@@ -135,7 +135,7 @@ server {
 
 ### Why are my graphs empty?
 
-It might happen that the Grafana dashboard loads, but the graphs remain empty. If the dashboard loads, but no data is shown, this may be caused by the following on of the following reasons:
+It might happen that the Grafana dashboard loads, but the graphs remain empty. If the dashboard loads, but no data is shown, this may be caused by any of the following reasons:
 
 - invalid credentials for the monitored RouterOS device
     - verify with: `/user/print detail`
@@ -149,7 +149,7 @@ It might happen that the Grafana dashboard loads, but the graphs remain empty. I
 This project is only a personal hobby.
 It do it mainly to learn something and to improve my skills.
 Therefore, the project does not compete with other projects.
-Nor do I aim for completeness or perfection with the project.
+Nor do I aim for completeness or perfection.
 The goal of this project is to develop a monitoring solution for multiple RouterOS devices simultaneously that is resource-efficient and scalable.
 
 ### Why you don't use the SNMP for monitoring?
