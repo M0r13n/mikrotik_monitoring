@@ -52,7 +52,7 @@ services:
     volumes:
       # Since Version v0.37 mktxp runs as single user
       # Prior it was root
-      - './mktxp/:/mktxp/mktxp/'
+      - './mktxp/:/home/mktxp/mktxp/'
     networks:
       - default
     restart: unless-stopped
