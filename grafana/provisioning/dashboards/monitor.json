@@ -693,7 +693,6 @@
       "datasource": {
         "type": "prometheus"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -729,7 +728,7 @@
         "x": 2,
         "y": 3
       },
-      "id": 6,
+      "id": 8,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -750,17 +749,37 @@
       "pluginVersion": "9.0.6",
       "targets": [
         {
+          "application": {
+            "filter": "General"
+          },
           "datasource": {
             "type": "prometheus"
           },
           "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
           "instant": true,
           "interval": "",
-          "legendFormat": "{{board_name}}",
-          "refId": "B"
+          "intervalFactor": 1,
+          "item": {
+            "filter": "System version and hw"
+          },
+          "legendFormat": "{{version}} ",
+          "mode": 2,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
         }
       ],
-      "title": "Routerboard HW",
+      "title": "System version",
       "type": "stat"
     },
     {
@@ -841,6 +860,7 @@
       "datasource": {
         "type": "prometheus"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -876,7 +896,7 @@
         "x": 2,
         "y": 5
       },
-      "id": 8,
+      "id": 6,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -897,37 +917,17 @@
       "pluginVersion": "9.0.6",
       "targets": [
         {
-          "application": {
-            "filter": "General"
-          },
           "datasource": {
             "type": "prometheus"
           },
           "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
           "instant": true,
           "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "System version and hw"
-          },
-          "legendFormat": "{{version}} ",
-          "mode": 2,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
+          "legendFormat": "{{board_name}}",
+          "refId": "B"
         }
       ],
-      "title": "System version",
+      "title": "Routerboard HW",
       "type": "stat"
     },
     {
@@ -1017,7 +1017,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -1031,13 +1032,13 @@
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 30,
-            "gradientMode": "none",
+            "gradientMode": "hue",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -1070,83 +1071,7 @@
           },
           "unit": "bps"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "In | defconf"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-red",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "In | ether2"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Incoming traffic on interface ether1-gateway"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#1F78C1",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Out | defconf"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Outgoing traffic on interface ether1-gateway"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#EAB839",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1177,7 +1102,7 @@
             "type": "prometheus"
           },
           "exemplar": true,
-          "expr": " rate(mktxp_interface_rx_byte_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
+          "expr": " rate(mktxp_interface_rx_byte_total{routerboard_address=\"$node\"}[$__rate_interval]) * 8 != 0",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -1208,7 +1133,7 @@
             "type": "prometheus"
           },
           "exemplar": true,
-          "expr": "- rate(mktxp_interface_tx_byte_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
+          "expr": "- rate(mktxp_interface_tx_byte_total{routerboard_address=\"$node\"}[$__rate_interval]) * 8 != 0",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -1236,7 +1161,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1316,7 +1242,7 @@
             "type": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(mktxp_interface_rx_packet_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
+          "expr": "rate(mktxp_interface_rx_packet_total{routerboard_address=\"$node\"}[$__rate_interval]) != 0",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -1327,7 +1253,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1404,7 +1331,7 @@
             "type": "prometheus"
           },
           "exemplar": true,
-          "expr": "rate(mktxp_interface_tx_packet_total{routerboard_address=\"$node\"}[15s]) * 8 != 0",
+          "expr": "rate(mktxp_interface_tx_packet_total{routerboard_address=\"$node\"}[$__rate_interval]) != 0",
           "interval": "",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2825,193 +2752,187 @@
       }
     },
     {
-      "aliasColors": {
-        "Incoming traffic on interface ether1-gateway": "#1F78C1",
-        "Outgoing traffic on interface ether1-gateway": "#EAB839"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
-      "description": "",
-      "editable": true,
-      "error": false,
       "fieldConfig": {
         "defaults": {
-          "links": [],
-          "unit": "decbytes"
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
         },
         "overrides": []
       },
-      "fill": 3,
-      "fillGradient": 0,
       "gridPos": {
-        "h": 11,
+        "h": 15,
         "w": 12,
         "x": 0,
         "y": 61
       },
-      "hiddenSeries": false,
-      "id": 43,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
+      "id": 106,
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "9.0.6",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
-          "application": {
-            "filter": "Network"
-          },
           "datasource": {
-            "type": "prometheus"
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(mktxp_firewall_filter_total{routerboard_address=\"$node\"}[4m])",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "Incoming traffic on interface ether1-gateway"
-          },
-          "legendFormat": "{{ name }}",
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
+          "editorMode": "code",
+          "expr": "rate(mktxp_firewall_filter_ipv6_total{routerboard_address=\"$node\"}[$__rate_interval])",
+          "legendFormat": "{{name}}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Firewall Rules Traffic ",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:706",
-          "format": "decbytes",
-          "label": "",
-          "logBase": 2,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:707",
-          "format": "short",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "title": "Firewall Rules Traffic (IPv6)",
+      "type": "timeseries"
     },
     {
-      "aliasColors": {
-        "Incoming traffic on interface ether1-gateway": "#1F78C1",
-        "Outgoing traffic on interface ether1-gateway": "#EAB839"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
-      "editable": true,
-      "error": false,
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
           "links": [],
-          "unit": "decbytes"
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
         },
         "overrides": []
       },
-      "fill": 3,
-      "fillGradient": 0,
       "gridPos": {
-        "h": 11,
+        "h": 15,
         "w": 12,
         "x": 12,
         "y": 61
       },
-      "hiddenSeries": false,
-      "id": 76,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
+      "id": 43,
       "links": [],
-      "nullPointMode": "connected",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [
+            "mean",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       },
-      "paceLength": 10,
-      "percentage": false,
       "pluginVersion": "9.0.6",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
           "application": {
@@ -3020,7 +2941,7 @@
           "datasource": {
             "type": "prometheus"
           },
-          "expr": "rate(mktxp_firewall_raw_total{routerboard_address=\"$node\"}[4m])",
+          "expr": "rate(mktxp_firewall_filter_total{routerboard_address=\"$node\"}[$__rate_interval])",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -3044,39 +2965,126 @@
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Raw Firewall Rules Traffic ",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
+      "title": "Firewall Rules Traffic (IPv4)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:706",
-          "format": "decbytes",
-          "label": "",
-          "logBase": 2,
-          "show": true
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 76
+      },
+      "id": 76,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.0.6",
+      "targets": [
         {
-          "$$hashKey": "object:707",
-          "format": "short",
-          "logBase": 1,
-          "show": false
+          "application": {
+            "filter": "Network"
+          },
+          "datasource": {
+            "type": "prometheus"
+          },
+          "expr": "rate(mktxp_firewall_raw_total{routerboard_address=\"$node\"}[$__rate_interval])",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
         }
       ],
-      "yaxis": {
-        "align": false
-      }
+      "title": "Raw Firewall Rules Traffic (IPv4)",
+      "type": "timeseries"
     },
     {
       "aliasColors": {},
@@ -3100,7 +3108,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 72
+        "y": 82
       },
       "hiddenSeries": false,
       "id": 27,
@@ -3199,7 +3207,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 72
+        "y": 82
       },
       "hiddenSeries": false,
       "id": 74,
@@ -3285,7 +3293,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 79
+        "y": 89
       },
       "id": 90,
       "panels": [],
@@ -3336,7 +3344,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 80
+        "y": 90
       },
       "hideBranding": false,
       "highlightCards": true,
@@ -3487,7 +3495,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 80
+        "y": 90
       },
       "id": 88,
       "options": {
@@ -3571,7 +3579,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 88
+        "y": 98
       },
       "id": 29,
       "panels": [
@@ -4546,7 +4554,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 89
+        "y": 99
       },
       "id": 33,
       "panels": [],
@@ -4633,7 +4641,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 90
+        "y": 100
       },
       "id": 35,
       "options": {
@@ -4790,7 +4798,7 @@
         "h": 15,
         "w": 18,
         "x": 6,
-        "y": 90
+        "y": 100
       },
       "id": 41,
       "options": {
@@ -4896,7 +4904,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 97
+        "y": 107
       },
       "id": 47,
       "links": [],
@@ -4997,7 +5005,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 105
+        "y": 115
       },
       "id": 104,
       "options": {
@@ -5111,7 +5119,7 @@
         "h": 16,
         "w": 6,
         "x": 0,
-        "y": 106
+        "y": 116
       },
       "id": 48,
       "links": [],
@@ -5187,7 +5195,7 @@
         "h": 9,
         "w": 18,
         "x": 6,
-        "y": 113
+        "y": 123
       },
       "hiddenSeries": false,
       "id": 49,
@@ -5295,7 +5303,8 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "editable": true,
       "error": false,
@@ -5311,7 +5320,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 122
+        "y": 132
       },
       "hiddenSeries": false,
       "id": 39,
@@ -5364,7 +5373,7 @@
           "datasource": {
             "type": "prometheus"
           },
-          "expr": "rate(mktxp_capsman_clients_tx_bytes_total{routerboard_address=\"$node\"}[15s]) * 8",
+          "expr": "rate(mktxp_capsman_clients_tx_bytes_total{routerboard_address=\"$node\"}[$__rate_interval]) * 8",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -5394,7 +5403,7 @@
           "datasource": {
             "type": "prometheus"
           },
-          "expr": "rate(mktxp_capsman_clients_rx_bytes_total{routerboard_address=\"$node\"}[15s]) * 8",
+          "expr": "rate(mktxp_capsman_clients_rx_bytes_total{routerboard_address=\"$node\"}[$__rate_interval]) * 8",
           "format": "time_series",
           "functions": [],
           "group": {
@@ -5459,7 +5468,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 132
+        "y": 142
       },
       "id": 80,
       "panels": [],
@@ -5506,7 +5515,7 @@
         "h": 3,
         "w": 6,
         "x": 0,
-        "y": 133
+        "y": 143
       },
       "id": 102,
       "options": {
@@ -5565,7 +5574,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 133
+        "y": 143
       },
       "hiddenSeries": false,
       "id": 77,
@@ -5724,7 +5733,7 @@
         "h": 13,
         "w": 6,
         "x": 0,
-        "y": 136
+        "y": 146
       },
       "id": 78,
       "links": [],
@@ -5836,7 +5845,7 @@
         "h": 8,
         "w": 9,
         "x": 6,
-        "y": 141
+        "y": 151
       },
       "id": 98,
       "options": {
@@ -5947,7 +5956,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 141
+        "y": 151
       },
       "id": 100,
       "options": {
@@ -6028,6 +6037,6 @@
   "timezone": "",
   "title": "Mikrotik MKTXP Exporter",
   "uid": "0j4sdLm7z",
-  "version": 7,
+  "version": 10,
   "weekStart": ""
 }
