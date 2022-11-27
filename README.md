@@ -165,3 +165,21 @@ I find them very hard to read.
 In addition, the API offers a lot of flexibility.
 Any command can be executed on RouterOS via the API.
 Thus it is possible to collect complex metrics.
+
+### I get a PermissionError when running docker-compose up
+
+When bind-mounting a directory from the host into a container, files and directories
+maintain the permissions they **have on the host**. These can not be changed by Docker.
+Typically, a bind-mounted directory has permissions like these: `rwxrwxr-x`.
+This means that the container can read from the bind-mounted directory. But it can not
+write or modify the mounted files.
+
+This mostly works fine. But the Prometheus exporter mktxp has a specialty:
+It may update it's configuration if some keys are missing from the configuration file.
+Imagine, that the key `ipv6_firewall` is missing from the **mktxp.conf**. In this case
+mktxp will add `ipv6_firewall=false` to the configuration file instead of failing.
+This is a helpful feature, but can cause the container to crash, if the user inside
+the container lacks write permissions.
+
+In order to resolve this issue, make sure that all keys that mktxp currently supports
+are listed in your **mktxp.conf** file.
