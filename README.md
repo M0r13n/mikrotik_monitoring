@@ -18,6 +18,7 @@ Over the past years I replaced all my networking gear with Mikrotik devices. I a
 ![General system stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_2.png)
 ![Firewall stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_3.png)
 ![CAPsMAN stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_5.png)
+![Interface overview](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_6.png)
 
 ## Installation
 
