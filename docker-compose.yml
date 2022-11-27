@@ -48,7 +48,7 @@ services:
   mktxp:
     # https://github.com/M0r13n/mikrotik_monitoring
     # Note: You might need to build the image yourself if not on AMD64 or ARM-v7/V8
-    image: leonmorten/mktxp:latest
+    image: mktxp:latest
     volumes:
       # Since Version v0.37 mktxp runs as single user
       # Prior it was root
@@ -66,7 +66,7 @@ services:
       - ./nginx/nginx-selfsigned.crt:/etc/nginx/ssl/nginx-selfsigned.crt
       - ./nginx/self-signed.conf:/etc/nginx/ssl/self-signed.conf
     ports:
-      - 80:80
+      - 80:80  # You may adjust to some unprivileged ports
       - 443:443
     networks:
       - default
