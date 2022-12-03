@@ -48,7 +48,7 @@ services:
   mktxp:
     # https://github.com/M0r13n/mikrotik_monitoring
     # Note: You might need to build the image yourself if not on AMD64 or ARM-v7/V8
-    image: mktxp:latest
+    image: leonmorten/mktxp:latest
     volumes:
       # Since Version v0.37 mktxp runs as single user
       # Prior it was root
