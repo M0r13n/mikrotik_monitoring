@@ -132,6 +132,16 @@ server {
 
 ```
 
+## AppArmor
+
+Under `./docker-armor` you can find an AppArmor profile for this stack. To use it, do the following:
+
+```
+cp ./docker-armor /etc/apparmor.d/docker-armor
+apparmor_parser -r -W /etc/apparmor.d/docker-armor
+docker-compose up -d
+```
+
 ## FAQ
 
 ### Why are my graphs empty?
