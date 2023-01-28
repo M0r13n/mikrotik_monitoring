@@ -139,7 +139,7 @@ Under `./docker-armor` you can find an AppArmor profile for this stack. To use i
 ```
 cp ./docker-armor /etc/apparmor.d/docker-armor
 apparmor_parser -r -W /etc/apparmor.d/docker-armor
-docker-compose up -d
+docker-compose -f docker-compose-armored.yml  up -d
 ```
 
 ## FAQ
