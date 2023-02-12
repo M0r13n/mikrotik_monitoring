@@ -1,0 +1,79 @@
+version: "3.9"
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
+services:
+  # Prometheus
+  # https://github.com/stefanprodan/dockprom
+  prometheus:
+    image: prom/prometheus:v2.42.0
+    container_name: prometheus
+    security_opt:
+      - apparmor:docker-mikrotik-monitoring
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: unless-stopped
+    networks:
+      - default
+    labels:
+      org.label-schema.group: "monitoring"
+
+  # Grafana
+  # https://github.com/stefanprodan/dockprom
+  grafana:
+    image: grafana/grafana:9.3.6
+    security_opt:
+      - apparmor:docker-mikrotik-monitoring
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=flant-statusmap-panel
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/mikrotik/monitor.json
+    restart: unless-stopped
+    networks:
+      - default
+    labels:
+      org.label-schema.group: "monitoring"
+
+  # MKTXP
+  # https://github.com/akpw/mktxp
+  mktxp:
+    image: ghcr.io/akpw/mktxp:gha-4093170275
+    security_opt:
+      - apparmor:docker-mikrotik-monitoring
+    volumes:
+      # Since Version v0.37 mktxp runs as single user
+      # Prior it was root
+      - './mktxp/:/home/mktxp/mktxp/'
+    networks:
+      - default
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    security_opt:
+      - apparmor:docker-nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx-selfsigned.key:/etc/nginx/ssl/nginx-selfsigned.key
+      - ./nginx/nginx-selfsigned.crt:/etc/nginx/ssl/nginx-selfsigned.crt
+      - ./nginx/self-signed.conf:/etc/nginx/ssl/self-signed.conf
+    ports:
+      - 80:80  # You may adjust to some unprivileged ports
+      - 443:443
+    networks:
+      - default
+    restart: unless-stopped
