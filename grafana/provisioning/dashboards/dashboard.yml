@@ -4,10 +4,10 @@ apiVersion: 1
 providers:
   - name: 'Prometheus'
     orgId: 1
-    folder: ''
+    folder: 'Mikrotik Monitoring'
     type: file
-    disableDeletion: false
+    disableDeletion: true
     editable: true
     allowUiUpdates: true
     options:
-      path: /etc/grafana/provisioning/dashboards
+      path: /etc/grafana/provisioning/dashboards/mikrotik

@@ -4,12 +4,11 @@ volumes:
     prometheus_data: {}
     grafana_data: {}
 
-
 services:
   # Prometheus
   # https://github.com/stefanprodan/dockprom
   prometheus:
-    image: prom/prometheus:v2.37.0
+    image: prom/prometheus:v2.42.0
     container_name: prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -26,17 +25,18 @@ services:
   # Grafana
   # https://github.com/stefanprodan/dockprom
   grafana:
-    image: grafana/grafana:9.0.6
+    image: grafana/grafana:9.3.6
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
     environment:
       - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_INSTALL_PLUGINS=flant-statusmap-panel
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/mikrotik/monitor.json
     restart: unless-stopped
     networks:
       - default
@@ -46,9 +46,7 @@ services:
   # MKTXP
   # https://github.com/akpw/mktxp
   mktxp:
-    # https://github.com/M0r13n/mikrotik_monitoring
-    # Note: You might need to build the image yourself if not on AMD64 or ARM-v7/V8
-    image: leonmorten/mktxp:latest
+    image: ghcr.io/akpw/mktxp:gha-4093170275
     volumes:
       # Since Version v0.37 mktxp runs as single user
       # Prior it was root
