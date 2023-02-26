@@ -7,7 +7,7 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitor: 'my-project'
+      monitor: 'mikrotik-monitoring'
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
@@ -31,3 +31,4 @@ scrape_configs:
          - targets:
             - 'mikrotik_exporter:9436'
             - 'mktxp:49090'
+            - 'smokeping:9374'

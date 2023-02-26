@@ -6,6 +6,7 @@ Over the past years I replaced all my networking gear with Mikrotik devices. I a
 - [A somewhat useable Grafana Dashboard](https://grafana.com/grafana/dashboards/10950)
 - [A Prometheus exporter for Mikrotik devices written in Python](https://github.com/akpw/mktxp).
 - [A Prometheus exporter for Mikrotik devices written in Go](https://github.com/nshttpd/mikrotik-exporter)
+- [Smokeping](https://github.com/SuperQ/smokeping_prober)
 
 ## Setup
 
@@ -95,6 +96,16 @@ You may need to adjust the following configuration files and add your own creden
 
 
 Done. You should now be able to open the Grafana dashboard on Port 3000 of your Raspberry Pi.
+
+## Latency Monitoring
+
+This projects uses a [smokeping prober](https://github.com/SuperQ/smokeping_prober) to measure network latency and packet loss. By default three targets are configured:
+
+- 1.1.1.1 (Cloudflare)
+- 8.8.8.8 (Google)
+- 9.9.9.9 (IBM)
+
+You may adjust **smokeping/smokeping.yml** according to your needs.
 
 ## Multiple Nodes
 
