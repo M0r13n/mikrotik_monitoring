@@ -77,3 +77,16 @@ services:
     networks:
       - default
     restart: unless-stopped
+
+  # https://github.com/SuperQ/smokeping_prober
+  smokeping:
+    image: quay.io/superq/smokeping-prober:latest
+    container_name: mikrotik-smokeping-prober
+    security_opt:
+      - apparmor:docker-mikrotik-monitoring
+    command: --config.file=/etc/smokeping/smokeping.yml
+    volumes:
+      - ./smokeping/smokeping.yml:/etc/smokeping/smokeping.yml
+    networks:
+      - default
+    restart: unless-stopped

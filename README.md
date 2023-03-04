@@ -1,12 +1,54 @@
 # Monitor your Mikrotik router with Prometheus and Grafana
 
-Over the past years I replaced all my networking gear with Mikrotik devices. I absolutely love WinBox for management, but sometimes I miss some fancy charts and graphs. Luckily, RouterOS comes with a REST-API that can be used to query arbitrary data from the device. After some research I found some useful tools and blog posts that solved similar problems. Namely:
+Use Grafana & Prometheus to monitor Mikrotik devices. This projects serves as a ready to use blueprint for monitoring based on Docker. It is designed and tested to be run on Raspberry Pis.
 
-- [A blog post by Devin Smith that first got me interested](https://blog.devinsmith.co.za/home-internet-grafana-lockdown/)
-- [A somewhat useable Grafana Dashboard](https://grafana.com/grafana/dashboards/10950)
-- [A Prometheus exporter for Mikrotik devices written in Python](https://github.com/akpw/mktxp).
-- [A Prometheus exporter for Mikrotik devices written in Go](https://github.com/nshttpd/mikrotik-exporter)
-- [Smokeping](https://github.com/SuperQ/smokeping_prober)
+## Features
+
+- System Health Monitoring
+  - disk usage
+  - CPU load
+  - memory usage
+  - public IP address (IPv4 & IPv6)
+  - system uptime
+  - temperature
+  - voltage monitoring
+- Interface Monitoring
+  - traffic (bit/s)
+  - traffic (packets/s)
+  - per interface graphs
+- Latency Monitoring
+  - customizable ICMP and/or UDP pings
+  - packet loss
+- DHCP Monitoring
+  - active leases
+  - MAC addresses, host names, addresses
+- Network Monitoring
+  - routes
+  - interfaces errors
+  - interface states
+  - PoE states
+- Firewall Monitoring
+  - rules traffic
+  - logged rules traffic
+  - Ipv4 & IPv6
+  - bandwidth
+  - active users
+- Wireless Monitoring
+  - noise floor
+  - TxCCQ
+  - client devices
+  - number of clients
+  - traffic
+  - signal strength
+  - signal to noise ratio
+- Netwatch
+- CAPsMAN Monitoring
+  - remote CAPS
+  - registrations
+  - clients
+  - frequencies
+  - signal strength
+  - traffic
 
 ## Setup
 
@@ -16,10 +58,18 @@ Over the past years I replaced all my networking gear with Mikrotik devices. I a
 
 ## Demo pictures
 
-![General system stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_2.png)
-![Firewall stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_3.png)
-![CAPsMAN stats](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_5.png)
-![Interface overview](https://github.com/M0r13n/mikrotik_monitoring/blob/main/doc/pic_6.png)
+![General system stats](./doc/system.png)
+
+<details><summary>Show more images</summary>
+
+![Network](./doc/network.png)
+![Latency](./doc/latency.png)
+![Netwatch](./doc/netwatch.png)
+![Firewall](./doc/firewall.png)
+![WiFi](./doc/wifi.png)
+![Interfaces](./doc/interfaces.png)
+
+</details>
 
 ## Installation
 
@@ -152,6 +202,14 @@ cp ./docker-armor /etc/apparmor.d/docker-armor
 apparmor_parser -r -W /etc/apparmor.d/docker-armor
 docker-compose -f docker-compose-armored.yml  up -d
 ```
+
+## Resources
+
+- [A blog post by Devin Smith that first got me interested](https://blog.devinsmith.co.za/home-internet-grafana-lockdown/)
+- [A somewhat useable Grafana Dashboard](https://grafana.com/grafana/dashboards/10950)
+- [A Prometheus exporter for Mikrotik devices written in Python](https://github.com/akpw/mktxp).
+- [A Prometheus exporter for Mikrotik devices written in Go](https://github.com/nshttpd/mikrotik-exporter)
+- [Smokeping](https://github.com/SuperQ/smokeping_prober)
 
 ## FAQ
 
