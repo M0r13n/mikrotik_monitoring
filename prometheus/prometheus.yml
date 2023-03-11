@@ -19,7 +19,7 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'prometheus'
+  - job_name: 'mikrotik'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
@@ -31,4 +31,21 @@ scrape_configs:
          - targets:
             - 'mikrotik_exporter:9436'
             - 'mktxp:49090'
-            - 'smokeping:9374'
+  
+  - job_name: 'blackbox'
+    scrape_interval: 1s
+    metrics_path: /probe
+    params:
+      module: [icmp_ttl5]  # use ICMP as the ping protocol
+    static_configs:
+      - targets:
+        - 1.1.1.1
+        - 8.8.8.8
+        - 9.9.9.9
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115  # The blackbox exporter's real hostname:port.

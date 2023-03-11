@@ -1,0 +1,6 @@
+modules:
+  icmp_ttl5:
+    prober: icmp
+    timeout: 5s
+    icmp:
+      ttl: 10

@@ -78,15 +78,14 @@ services:
       - default
     restart: unless-stopped
 
-  # https://github.com/SuperQ/smokeping_prober
-  smokeping:
-    image: quay.io/superq/smokeping-prober:latest
-    container_name: mikrotik-smokeping-prober
-    security_opt:
-      - apparmor:docker-mikrotik-monitoring
-    command: --config.file=/etc/smokeping/smokeping.yml
+  blackbox:
+    image: quay.io/prometheus/blackbox-exporter:latest
+    container_name: mikrotik-blackbox-exporter
+    command: --config.file=/config/blackbox.yml
     volumes:
-      - ./smokeping/smokeping.yml:/etc/smokeping/smokeping.yml
+      - ./blackbox/blackbox.yml:/config/blackbox.yml
     networks:
       - default
     restart: unless-stopped
+    security_opt:
+      - apparmor:docker-mikrotik-monitoring
