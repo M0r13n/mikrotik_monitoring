@@ -31,7 +31,6 @@ scrape_configs:
          - targets:
             - 'mikrotik_exporter:9436'
             - 'mktxp:49090'
-            - 'smokeping:9374'
   
   - job_name: 'blackbox'
     scrape_interval: 1s

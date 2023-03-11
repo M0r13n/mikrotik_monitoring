@@ -149,13 +149,13 @@ Done. You should now be able to open the Grafana dashboard on Port 3000 of your 
 
 ## Latency Monitoring
 
-This projects uses a [smokeping prober](https://github.com/SuperQ/smokeping_prober) to measure network latency and packet loss. By default three targets are configured:
+This projects uses the Prometheus Blackbox exporter to measure network latency. By default three targets are configured:
 
 - 1.1.1.1 (Cloudflare)
 - 8.8.8.8 (Google)
 - 9.9.9.9 (IBM)
 
-You may adjust **smokeping/smokeping.yml** according to your needs.
+You may adjust **blackbox/blackbox.yml** according to your needs.
 
 ## Multiple Nodes
 
@@ -209,7 +209,7 @@ docker-compose -f docker-compose-armored.yml  up -d
 - [A somewhat useable Grafana Dashboard](https://grafana.com/grafana/dashboards/10950)
 - [A Prometheus exporter for Mikrotik devices written in Python](https://github.com/akpw/mktxp).
 - [A Prometheus exporter for Mikrotik devices written in Go](https://github.com/nshttpd/mikrotik-exporter)
-- [Smokeping](https://github.com/SuperQ/smokeping_prober)
+- [Prometheus Blackbox exporter](https://github.com/prometheus/blackbox_exporter/blob/master/example.yml)
 
 ## FAQ
 
