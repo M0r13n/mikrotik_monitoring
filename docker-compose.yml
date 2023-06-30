@@ -47,7 +47,7 @@ services:
   # MKTXP
   # https://github.com/akpw/mktxp
   mktxp:
-    image: ghcr.io/akpw/mktxp:gha-4093170275
+    image: ghcr.io/akpw/mktxp:gha-5421251592
     container_name: mikrotik-mktxp
     volumes:
       # Since Version v0.37 mktxp runs as single user

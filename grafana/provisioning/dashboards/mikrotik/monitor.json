@@ -90,7 +90,7 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 2,
+        "w": 3,
         "x": 0,
         "y": 1
       },
@@ -157,8 +157,8 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 2,
-        "x": 2,
+        "w": 3,
+        "x": 3,
         "y": 1
       },
       "id": 96,
@@ -191,6 +191,562 @@
       ],
       "title": "Public IP",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 6,
+        "y": 1
+      },
+      "id": 6,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{board_name}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Routerboard HW",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dtdurations"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 9,
+        "y": 1
+      },
+      "id": 12,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "application": {
+            "filter": "General"
+          },
+          "datasource": {
+            "type": "prometheus"
+          },
+          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "System uptime"
+          },
+          "legendFormat": "",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "System uptime",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 12,
+        "y": 1
+      },
+      "id": 8,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "application": {
+            "filter": "General"
+          },
+          "datasource": {
+            "type": "prometheus"
+          },
+          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "System version and hw"
+          },
+          "legendFormat": "{{version}} ",
+          "mode": 2,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "System version",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "The newest available version",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 15,
+        "y": 1
+      },
+      "id": 137,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "mktxp_system_update_available{routerboard_address=\"$node\"}",
+          "instant": true,
+          "legendFormat": "{{newest_version}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Newest Version",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 18,
+        "y": 1
+      },
+      "id": 57,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "application": {
+            "filter": "General"
+          },
+          "datasource": {
+            "type": "prometheus"
+          },
+          "expr": "mktxp_system_routerboard_voltage{routerboard_address=\"$node\"}",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "System version and hw"
+          },
+          "legendFormat": "",
+          "mode": 2,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Voltage",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 21,
+        "y": 1
+      },
+      "id": 139,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "mktxp_active_users_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Active Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 70
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 2,
+        "x": 0,
+        "y": 3
+      },
+      "id": 59,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "expr": "mktxp_system_routerboard_temperature{routerboard_address=\"$node\"} or mktxp_system_cpu_temperature{routerboard_address=\"$node\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Temperature",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -235,8 +791,8 @@
       "gridPos": {
         "h": 8,
         "w": 4,
-        "x": 4,
-        "y": 1
+        "x": 2,
+        "y": 3
       },
       "id": 14,
       "links": [],
@@ -334,8 +890,8 @@
       "gridPos": {
         "h": 8,
         "w": 8,
-        "x": 8,
-        "y": 1
+        "x": 6,
+        "y": 3
       },
       "hiddenSeries": false,
       "id": 16,
@@ -457,9 +1013,9 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 8,
-        "x": 16,
-        "y": 1
+        "w": 10,
+        "x": 14,
+        "y": 3
       },
       "hiddenSeries": false,
       "id": 18,
@@ -600,426 +1156,6 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "green",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "dtdurations"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 0,
-        "y": 3
-      },
-      "id": 12,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "application": {
-            "filter": "General"
-          },
-          "datasource": {
-            "type": "prometheus"
-          },
-          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "System uptime"
-          },
-          "legendFormat": "",
-          "mode": 0,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "System uptime",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "green",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 2,
-        "y": 3
-      },
-      "id": 6,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "name"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{board_name}}",
-          "refId": "B"
-        }
-      ],
-      "title": "Routerboard HW",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 30
-              },
-              {
-                "color": "yellow",
-                "value": 40
-              },
-              {
-                "color": "orange",
-                "value": 60
-              },
-              {
-                "color": "red",
-                "value": 70
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 2,
-        "x": 0,
-        "y": 5
-      },
-      "id": 59,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "expr": "mktxp_system_routerboard_temperature{routerboard_address=\"$node\"} or mktxp_system_cpu_temperature{routerboard_address=\"$node\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Temperature",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "green",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 2,
-        "y": 5
-      },
-      "id": 8,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "name"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "application": {
-            "filter": "General"
-          },
-          "datasource": {
-            "type": "prometheus"
-          },
-          "expr": "mktxp_system_uptime{routerboard_address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "System version and hw"
-          },
-          "legendFormat": "{{version}} ",
-          "mode": 2,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "System version",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "green",
-            "mode": "fixed"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "volt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 2,
-        "y": 7
-      },
-      "id": 57,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "value"
-      },
-      "pluginVersion": "9.3.6",
-      "targets": [
-        {
-          "application": {
-            "filter": "General"
-          },
-          "datasource": {
-            "type": "prometheus"
-          },
-          "expr": "mktxp_system_routerboard_voltage{routerboard_address=\"$node\"}",
-          "format": "time_series",
-          "functions": [],
-          "group": {
-            "filter": "Network"
-          },
-          "hide": false,
-          "host": {
-            "filter": "MikroTik Router"
-          },
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "item": {
-            "filter": "System version and hw"
-          },
-          "legendFormat": "",
-          "mode": 2,
-          "options": {
-            "showDisabledItems": false
-          },
-          "refId": "A"
-        }
-      ],
-      "title": "Voltage",
-      "type": "stat"
-    },
-    {
-      "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -1082,7 +1218,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "id": 75,
       "links": [],
@@ -1230,7 +1366,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 18
       },
       "id": 92,
       "options": {
@@ -1322,7 +1458,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 18
       },
       "id": 94,
       "options": {
@@ -1358,7 +1494,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 26
       },
       "id": 131,
       "panels": [],
@@ -1428,7 +1564,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 25
+        "y": 27
       },
       "id": 129,
       "options": {
@@ -1527,7 +1663,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 27
       },
       "id": 135,
       "options": {
@@ -1621,7 +1757,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 35
       },
       "id": 133,
       "options": {
@@ -1664,7 +1800,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 41
       },
       "id": 2,
       "panels": [
@@ -1702,7 +1838,7 @@
             "h": 8,
             "w": 5,
             "x": 0,
-            "y": 65
+            "y": 89
           },
           "id": 20,
           "links": [],
@@ -1864,7 +2000,7 @@
             "h": 11,
             "w": 19,
             "x": 5,
-            "y": 65
+            "y": 89
           },
           "id": 25,
           "options": {
@@ -1971,7 +2107,7 @@
             "h": 3,
             "w": 5,
             "x": 0,
-            "y": 73
+            "y": 97
           },
           "id": 23,
           "links": [],
@@ -2047,7 +2183,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 42
       },
       "id": 45,
       "panels": [
@@ -2095,7 +2231,7 @@
             "h": 5,
             "w": 2,
             "x": 0,
-            "y": 66
+            "y": 90
           },
           "id": 70,
           "options": {
@@ -2155,7 +2291,7 @@
             "h": 5,
             "w": 4,
             "x": 2,
-            "y": 66
+            "y": 90
           },
           "id": 71,
           "links": [],
@@ -2254,7 +2390,7 @@
             "h": 5,
             "w": 6,
             "x": 6,
-            "y": 66
+            "y": 90
           },
           "id": 69,
           "options": {
@@ -2311,7 +2447,7 @@
             "h": 16,
             "w": 12,
             "x": 12,
-            "y": 66
+            "y": 90
           },
           "hiddenSeries": false,
           "id": 55,
@@ -2463,7 +2599,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 71
+            "y": 95
           },
           "id": 51,
           "options": {
@@ -2531,7 +2667,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 71
+            "y": 95
           },
           "id": 53,
           "options": {
@@ -2692,7 +2828,7 @@
             "h": 4,
             "w": 12,
             "x": 0,
-            "y": 78
+            "y": 102
           },
           "id": 85,
           "options": {
@@ -2790,7 +2926,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 43
       },
       "id": 84,
       "panels": [
@@ -2821,7 +2957,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 59
+            "y": 83
           },
           "hiddenSeries": false,
           "id": 81,
@@ -2948,7 +3084,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 59
+            "y": 83
           },
           "hiddenSeries": false,
           "id": 82,
@@ -3110,7 +3246,7 @@
             "h": 15,
             "w": 12,
             "x": 0,
-            "y": 66
+            "y": 90
           },
           "id": 106,
           "options": {
@@ -3211,7 +3347,7 @@
             "h": 15,
             "w": 12,
             "x": 12,
-            "y": 66
+            "y": 90
           },
           "id": 43,
           "links": [],
@@ -3349,7 +3485,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 81
+            "y": 105
           },
           "id": 76,
           "links": [],
@@ -3430,7 +3566,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 87
+            "y": 111
           },
           "hiddenSeries": false,
           "id": 27,
@@ -3531,7 +3667,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 87
+            "y": 111
           },
           "hiddenSeries": false,
           "id": 74,
@@ -3644,7 +3780,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 94
+            "y": 118
           },
           "id": 127,
           "options": {
@@ -3739,7 +3875,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 44
       },
       "id": 90,
       "panels": [
@@ -3779,7 +3915,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 61
           },
           "hideBranding": false,
           "highlightCards": true,
@@ -3929,7 +4065,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 61
           },
           "id": 88,
           "options": {
@@ -4025,7 +4161,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 45
       },
       "id": 29,
       "panels": [
@@ -4049,7 +4185,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 69
+            "y": 93
           },
           "hiddenSeries": false,
           "id": 31,
@@ -4145,7 +4281,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 69
+            "y": 93
           },
           "hiddenSeries": false,
           "id": 73,
@@ -4317,7 +4453,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 77
+            "y": 101
           },
           "id": 68,
           "options": {
@@ -4407,7 +4543,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 77
+            "y": 101
           },
           "hiddenSeries": false,
           "id": 37,
@@ -4504,7 +4640,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 85
+            "y": 109
           },
           "hiddenSeries": false,
           "id": 61,
@@ -4607,7 +4743,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 85
+            "y": 109
           },
           "hiddenSeries": false,
           "id": 63,
@@ -4768,7 +4904,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 93
+            "y": 117
           },
           "hiddenSeries": false,
           "id": 65,
@@ -4886,7 +5022,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 93
+            "y": 117
           },
           "hiddenSeries": false,
           "id": 66,
@@ -5004,7 +5140,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 44
+        "y": 46
       },
       "id": 33,
       "panels": [
@@ -5079,7 +5215,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 70
+            "y": 94
           },
           "id": 35,
           "options": {
@@ -5235,7 +5371,7 @@
             "h": 15,
             "w": 18,
             "x": 6,
-            "y": 70
+            "y": 94
           },
           "id": 41,
           "options": {
@@ -5340,7 +5476,7 @@
             "h": 9,
             "w": 6,
             "x": 0,
-            "y": 77
+            "y": 101
           },
           "id": 47,
           "links": [],
@@ -5440,7 +5576,7 @@
             "h": 8,
             "w": 18,
             "x": 6,
-            "y": 85
+            "y": 109
           },
           "id": 104,
           "options": {
@@ -5553,7 +5689,7 @@
             "h": 16,
             "w": 6,
             "x": 0,
-            "y": 86
+            "y": 110
           },
           "id": 48,
           "links": [],
@@ -5629,7 +5765,7 @@
             "h": 9,
             "w": 18,
             "x": 6,
-            "y": 93
+            "y": 117
           },
           "hiddenSeries": false,
           "id": 49,
@@ -5754,7 +5890,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 102
+            "y": 126
           },
           "hiddenSeries": false,
           "id": 39,
@@ -5911,7 +6047,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 47
       },
       "id": 125,
       "panels": [
@@ -6008,7 +6144,7 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 183
+            "y": 207
           },
           "id": 108,
           "options": {
@@ -6066,7 +6202,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 48
       },
       "id": 80,
       "panels": [
@@ -6101,7 +6237,7 @@
             "h": 3,
             "w": 6,
             "x": 0,
-            "y": 72
+            "y": 96
           },
           "id": 102,
           "options": {
@@ -6160,7 +6296,7 @@
             "h": 8,
             "w": 18,
             "x": 6,
-            "y": 72
+            "y": 96
           },
           "hiddenSeries": false,
           "id": 77,
@@ -6318,7 +6454,7 @@
             "h": 13,
             "w": 6,
             "x": 0,
-            "y": 75
+            "y": 99
           },
           "id": 78,
           "links": [],
@@ -6429,7 +6565,7 @@
             "h": 8,
             "w": 9,
             "x": 6,
-            "y": 80
+            "y": 104
           },
           "id": 98,
           "options": {
@@ -6540,7 +6676,7 @@
             "h": 8,
             "w": 9,
             "x": 15,
-            "y": 80
+            "y": 104
           },
           "id": 100,
           "options": {
@@ -6597,8 +6733,8 @@
       {
         "current": {
           "selected": false,
-          "text": "10.0.10.1",
-          "value": "10.0.10.1"
+          "text": "10.0.0.1",
+          "value": "10.0.0.1"
         },
         "datasource": {
           "type": "prometheus",
