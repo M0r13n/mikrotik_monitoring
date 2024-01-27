@@ -1,14 +1,14 @@
 version: "3.9"
 
 volumes:
-    prometheus_data: {}
-    grafana_data: {}
+  prometheus_data: {}
+  grafana_data: {}
 
 services:
   # Prometheus
   # https://github.com/stefanprodan/dockprom
   prometheus:
-    image: prom/prometheus:v2.42.0
+    image: prom/prometheus:v2.45.3
     container_name: mikrotik-prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -16,7 +16,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=1y'  # <= adjust the storage retention period of Prometheus
+      - '--storage.tsdb.retention.time=1y' # <= adjust the storage retention period of Prometheus
     restart: unless-stopped
     networks:
       - default
@@ -26,7 +26,7 @@ services:
   # Grafana
   # https://github.com/stefanprodan/dockprom
   grafana:
-    image: grafana/grafana:9.3.6
+    image: grafana/grafana:10.3.1
     container_name: mikrotik-grafana
     volumes:
       - grafana_data:/var/lib/grafana
@@ -47,7 +47,7 @@ services:
   # MKTXP
   # https://github.com/akpw/mktxp
   mktxp:
-    image: ghcr.io/akpw/mktxp:gha-5421251592
+    image: ghcr.io/akpw/mktxp:gha-7614306238
     container_name: mikrotik-mktxp
     volumes:
       # Since Version v0.37 mktxp runs as single user
@@ -66,7 +66,7 @@ services:
       - ./nginx/nginx-selfsigned.crt:/etc/nginx/ssl/nginx-selfsigned.crt
       - ./nginx/self-signed.conf:/etc/nginx/ssl/self-signed.conf
     ports:
-      - 80:80  # You may adjust to some unprivileged ports
+      - 80:80 # You may adjust to some unprivileged ports
       - 443:443
     networks:
       - default

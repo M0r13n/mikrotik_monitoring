@@ -74,7 +74,7 @@ Use Grafana & Prometheus to monitor Mikrotik devices. This projects serves as a 
 ## Installation
 
 ## Mikrotik Router
-At first you need to prepare your router. 
+At first you need to prepare your router.
 
 Create a group on the device that has API and read-only access:
 
@@ -99,7 +99,7 @@ Install Docker + Docker-compose (reboot required)
 ```bash
 curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker ubuntu
-sudo pip3 install docker-compose
+sudo apt install docker-compose
 sudo systemctl enable docker
 sudo reboot
 ```
@@ -159,7 +159,7 @@ You may adjust **blackbox/blackbox.yml** according to your needs.
 
 ## Multiple Nodes
 
-It is possible to monitor multiple (Mikrotik) devices. Just change add as many devices to `mktxp/mktxp.conf` as you want. 
+It is possible to monitor multiple (Mikrotik) devices. Just change add as many devices to `mktxp/mktxp.conf` as you want.
 
 ## HTTPS
 
@@ -186,7 +186,7 @@ server {
   include ssl/self-signed.conf;
 
   location / {
-   proxy_set_header Host $http_host; 
+   proxy_set_header Host $http_host;
    proxy_pass http://grafana:3000/;
   }
 }
