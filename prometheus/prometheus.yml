@@ -29,9 +29,8 @@ scrape_configs:
 
     static_configs:
          - targets:
-            - 'mikrotik_exporter:9436'
             - 'mktxp:49090'
-  
+
   - job_name: 'blackbox'
     scrape_interval: 1s
     metrics_path: /probe
