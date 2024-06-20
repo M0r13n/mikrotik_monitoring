@@ -74,6 +74,7 @@ Use Grafana & Prometheus to monitor Mikrotik devices. This projects serves as a 
 ## Installation
 
 ## Mikrotik Router
+
 At first you need to prepare your router.
 
 Create a group on the device that has API and read-only access:
@@ -90,19 +91,11 @@ You need Ubuntu Server for ARM 64 bit in order to use this setup. You may also u
 
 You need to execute the following steps on the target machine itself (e.g. Raspberry Pi).
 
-Install Python and pip:
+Install Docker ([official docs](https://docs.docker.com/engine/install/debian/)):
 
-`sudo apt install python3-dev python3 python3-pip -y`
+`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`
 
-Install Docker + Docker-compose (reboot required)
-
-```bash
-curl -sSL https://get.docker.com | sh
-sudo usermod -aG docker ubuntu
-sudo apt install docker-compose
-sudo systemctl enable docker
-sudo reboot
-```
+**:warning: Note:** `docker-compose` was originally written in Python, but it was deprecated some time ago. [Migrate to Compose V2](https://docs.docker.com/compose/migrate/).
 
 <details>
 <summary>Optional: Build the Docker Image for mktxp</summary>
@@ -137,7 +130,7 @@ git clone https://github.com/M0r13n/mikrotik_monitoring.git
 cd mikrotik_monitoring
 
 # Let docker-compose do it's job
-docker-compose up -d
+docker compose up -d
 ```
 
 You may need to adjust the following configuration files and add your own credentials for your router:
@@ -200,7 +193,7 @@ Under `./docker-armor` you can find an AppArmor profile for this stack. To use i
 ```
 cp ./docker-armor /etc/apparmor.d/docker-armor
 apparmor_parser -r -W /etc/apparmor.d/docker-armor
-docker-compose -f docker-compose-armored.yml  up -d
+docker compose -f docker-compose-armored.yml  up -d
 ```
 
 ## Resources
