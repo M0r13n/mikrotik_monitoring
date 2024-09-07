@@ -8,15 +8,15 @@ services:
   # Prometheus
   # https://github.com/stefanprodan/dockprom
   prometheus:
-    image: prom/prometheus:v2.45.3
+    image: prom/prometheus:v2.54.1
     container_name: mikrotik-prometheus
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=1y' # <= adjust the storage retention period of Prometheus
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=1y" # <= adjust the storage retention period of Prometheus
     restart: unless-stopped
     networks:
       - default
@@ -26,7 +26,7 @@ services:
   # Grafana
   # https://github.com/stefanprodan/dockprom
   grafana:
-    image: grafana/grafana:10.3.1
+    image: grafana/grafana:11.2.0
     container_name: mikrotik-grafana
     volumes:
       - grafana_data:/var/lib/grafana
@@ -47,12 +47,12 @@ services:
   # MKTXP
   # https://github.com/akpw/mktxp
   mktxp:
-    image: ghcr.io/akpw/mktxp:gha-7614306238
+    image: ghcr.io/akpw/mktxp:gha-10485178964
     container_name: mikrotik-mktxp
     volumes:
       # Since Version v0.37 mktxp runs as single user
       # Prior it was root
-      - './mktxp/:/home/mktxp/mktxp/'
+      - "./mktxp/:/home/mktxp/mktxp/"
     networks:
       - default
     restart: unless-stopped
