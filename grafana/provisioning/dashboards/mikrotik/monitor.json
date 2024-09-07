@@ -1594,6 +1594,7 @@
             "axisLabel": "",
             "axisPlacement": "left",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 100,
             "gradientMode": "opacity",
@@ -1627,7 +1628,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1635,8 +1637,7 @@
               }
             ]
           },
-          "unit": "pps",
-          "unitScale": true
+          "unit": "pps"
         },
         "overrides": []
       },
@@ -1691,6 +1692,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 100,
             "gradientMode": "opacity",
@@ -1721,7 +1723,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1729,8 +1732,7 @@
               }
             ]
           },
-          "unit": "pps",
-          "unitScale": true
+          "unit": "pps"
         },
         "overrides": []
       },
@@ -2510,7 +2512,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -2521,8 +2524,7 @@
                 "value": 1
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -2547,7 +2549,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -2576,15 +2578,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -2612,7 +2614,7 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "application": {
@@ -2673,7 +2675,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -2684,8 +2687,7 @@
                 "value": 1
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -2713,7 +2715,7 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -2745,15 +2747,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -2769,6 +2771,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": ["lastNotNull"],
           "fields": "",
@@ -2778,7 +2781,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -2798,60 +2801,86 @@
       "type": "stat"
     },
     {
-      "aliasColors": {},
-      "autoMigrateFrom": "graph",
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "prometheus"
       },
-      "editable": true,
-      "error": false,
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
           "links": [],
-          "unitScale": true
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
         "overrides": []
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 14,
         "w": 12,
         "x": 12,
         "y": 38
       },
-      "hiddenSeries": false,
       "id": 55,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": true,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": ["mean", "sum"],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
-      "paceLength": 10,
-      "percentage": false,
       "pluginVersion": "10.3.1",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
           "application": {
@@ -2895,38 +2924,8 @@
           "refId": "B"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Interface Errors",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "timeseries",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:265",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:266",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -2953,7 +2952,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -2964,8 +2964,7 @@
                 "value": 1
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -2993,7 +2992,7 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -3029,7 +3028,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3037,8 +3037,7 @@
               }
             ]
           },
-          "unit": "Mbits",
-          "unitScale": true
+          "unit": "Mbits"
         },
         "overrides": []
       },
@@ -3059,7 +3058,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -3122,15 +3121,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -3229,7 +3228,7 @@
           }
         ]
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -4225,7 +4224,7 @@
       "type": "row"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": {
         "type": "prometheus"
       },
@@ -4236,269 +4235,7 @@
         "y": 53
       },
       "id": 90,
-      "panels": [
-        {
-          "cards": {
-            "cardHSpacing": 2,
-            "cardMinWidth": 5,
-            "cardVSpacing": 2
-          },
-          "color": {
-            "cardColor": "#b4ff00",
-            "colorScale": "sqrt",
-            "colorScheme": "interpolateGnYlRd",
-            "defaultColor": "#757575",
-            "exponent": 0.5,
-            "mode": "discrete",
-            "thresholds": [
-              {
-                "$$hashKey": "object:1491",
-                "color": "#56A64B",
-                "tooltip": "Up",
-                "value": "1"
-              },
-              {
-                "$$hashKey": "object:96",
-                "color": "#E02F44",
-                "tooltip": "Down",
-                "value": "0"
-              }
-            ]
-          },
-          "datasource": {
-            "type": "prometheus"
-          },
-          "description": "",
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 149
-          },
-          "hideBranding": false,
-          "highlightCards": true,
-          "id": 87,
-          "legend": {
-            "show": true
-          },
-          "links": [],
-          "nullPointMode": "as empty",
-          "pageSize": 15,
-          "pluginVersion": "7.4.5",
-          "seriesFilterIndex": -1,
-          "statusmap": {
-            "ConfigVersion": "v1"
-          },
-          "targets": [
-            {
-              "application": {
-                "filter": "Network"
-              },
-              "datasource": {
-                "type": "prometheus"
-              },
-              "expr": "max_over_time(mktxp_netwatch_status{routerboard_address=\"$node\"}[1m])",
-              "format": "time_series",
-              "functions": [],
-              "group": {
-                "filter": "Network"
-              },
-              "hide": false,
-              "host": {
-                "filter": "MikroTik Router"
-              },
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "item": {
-                "filter": "Incoming traffic on interface ether1-gateway"
-              },
-              "legendFormat": "{{ name }}",
-              "mode": 0,
-              "options": {
-                "showDisabledItems": false
-              },
-              "refId": "A"
-            }
-          ],
-          "title": "Status over time",
-          "tooltip": {
-            "customContent": "",
-            "extraInfo": "",
-            "freezeOnClick": true,
-            "items": [],
-            "show": true,
-            "showCustomContent": true,
-            "showExtraInfo": false,
-            "showItems": false
-          },
-          "type": "flant-statusmap-panel",
-          "useMax": true,
-          "usingPagination": false,
-          "xAxis": {
-            "show": true
-          },
-          "yAxis": {
-            "maxWidth": -1,
-            "minWidth": -1,
-            "show": true
-          },
-          "yAxisSort": "metrics",
-          "yLabel": {
-            "delimiter": "",
-            "labelTemplate": "",
-            "usingSplitLabel": false
-          }
-        },
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "fixed"
-              },
-              "custom": {
-                "align": "center",
-                "cellOptions": {
-                  "type": "color-text"
-                },
-                "filterable": false,
-                "inspect": false
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 0
-                  },
-                  {
-                    "color": "green",
-                    "value": 1
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Status"
-                },
-                "properties": [
-                  {
-                    "id": "mappings",
-                    "value": [
-                      {
-                        "options": {
-                          "0": {
-                            "text": "Down"
-                          },
-                          "1": {
-                            "text": "Up"
-                          }
-                        },
-                        "type": "value"
-                      }
-                    ]
-                  },
-                  {
-                    "id": "color",
-                    "value": {
-                      "mode": "fixed"
-                    }
-                  },
-                  {
-                    "id": "color"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 149
-          },
-          "id": 88,
-          "options": {
-            "footer": {
-              "fields": "",
-              "reducer": ["sum"],
-              "show": false
-            },
-            "showHeader": true,
-            "sortBy": []
-          },
-          "pluginVersion": "9.3.6",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus"
-              },
-              "expr": "mktxp_netwatch_info{routerboard_address=\"$node\"}",
-              "format": "table",
-              "instant": true,
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Netwatch Info",
-          "transformations": [
-            {
-              "id": "organize",
-              "options": {
-                "excludeByName": {
-                  "Time": true,
-                  "Value": true,
-                  "__name__": true,
-                  "disabled": true,
-                  "instance": true,
-                  "job": true,
-                  "name": true,
-                  "routerboard_address": true,
-                  "routerboard_name": true,
-                  "timeout": true
-                },
-                "indexByName": {
-                  "Time": 5,
-                  "Value": 9,
-                  "__name__": 4,
-                  "comment": 1,
-                  "host": 0,
-                  "instance": 3,
-                  "interval": 11,
-                  "job": 6,
-                  "name": 12,
-                  "routerboard_address": 7,
-                  "routerboard_name": 8,
-                  "since": 10,
-                  "status": 2,
-                  "timeout": 13
-                },
-                "renameByName": {
-                  "comment": "Comment",
-                  "host": "Host",
-                  "host_name": "Host Name",
-                  "interval": "Interval",
-                  "server": "DHCP Server",
-                  "since": "Since",
-                  "status": "Status"
-                }
-              }
-            }
-          ],
-          "type": "table"
-        }
-      ],
+      "panels": [],
       "targets": [
         {
           "datasource": {
@@ -4511,6 +4248,256 @@
       "type": "row"
     },
     {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 54
+      },
+      "id": 87,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "7.4.5",
+      "targets": [
+        {
+          "application": {
+            "filter": "Network"
+          },
+          "datasource": {
+            "type": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "max(max_over_time(mktxp_netwatch_status{routerboard_address=\"$node\"}[1m])) by (name)\n",
+          "format": "time_series",
+          "functions": [],
+          "group": {
+            "filter": "Network"
+          },
+          "hide": false,
+          "host": {
+            "filter": "MikroTik Router"
+          },
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "item": {
+            "filter": "Incoming traffic on interface ether1-gateway"
+          },
+          "legendFormat": "{{ name }}",
+          "mode": 0,
+          "options": {
+            "showDisabledItems": false
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Status over time",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "text": "Down"
+                      },
+                      "1": {
+                        "text": "Up"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "color"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 54
+      },
+      "id": 88,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "expr": "mktxp_netwatch_info{routerboard_address=\"$node\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Netwatch Info",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "disabled": true,
+              "instance": true,
+              "job": true,
+              "name": true,
+              "routerboard_address": true,
+              "routerboard_name": true,
+              "timeout": true
+            },
+            "indexByName": {
+              "Time": 5,
+              "Value": 9,
+              "__name__": 4,
+              "comment": 1,
+              "host": 0,
+              "instance": 3,
+              "interval": 11,
+              "job": 6,
+              "name": 12,
+              "routerboard_address": 7,
+              "routerboard_name": 8,
+              "since": 10,
+              "status": 2,
+              "timeout": 13
+            },
+            "renameByName": {
+              "comment": "Comment",
+              "host": "Host",
+              "host_name": "Host Name",
+              "interval": "Interval",
+              "server": "DHCP Server",
+              "since": "Since",
+              "status": "Status"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
       "collapsed": true,
       "datasource": {
         "type": "prometheus"
@@ -4519,7 +4506,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 62
       },
       "id": 29,
       "panels": [
@@ -5498,7 +5485,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 63
       },
       "id": 33,
       "panels": [
@@ -6401,7 +6388,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 64
       },
       "id": 148,
       "panels": [
@@ -6850,7 +6837,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 65
       },
       "id": 125,
       "panels": [
@@ -7005,7 +6992,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 66
       },
       "id": 80,
       "panels": [
@@ -7590,6 +7577,6 @@
   "timezone": "",
   "title": "Mikrotik MKTXP Exporter",
   "uid": "0j4sdLm7z",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
