@@ -8,7 +8,7 @@ services:
   # Prometheus
   # https://github.com/stefanprodan/dockprom
   prometheus:
-    image: prom/prometheus:v2.54.1
+    image: prom/prometheus:v3.4.1
     container_name: mikrotik-prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -26,7 +26,7 @@ services:
   # Grafana
   # https://github.com/stefanprodan/dockprom
   grafana:
-    image: grafana/grafana:11.2.0
+    image: grafana/grafana:12.0.1
     container_name: mikrotik-grafana
     volumes:
       - grafana_data:/var/lib/grafana
@@ -47,7 +47,7 @@ services:
   # MKTXP
   # https://github.com/akpw/mktxp
   mktxp:
-    image: ghcr.io/akpw/mktxp:gha-10485178964
+    image: ghcr.io/akpw/mktxp:1.2.10
     container_name: mikrotik-mktxp
     volumes:
       # Since Version v0.37 mktxp runs as single user
@@ -74,7 +74,7 @@ services:
 
   # https://github.com/prometheus/blackbox_exporter/blob/master/example.yml
   blackbox:
-    image: quay.io/prometheus/blackbox-exporter:latest
+    image: prom/blackbox-exporter:latest
     container_name: mikrotik-blackbox-exporter
     command: --config.file=/config/blackbox.yml
     volumes:
